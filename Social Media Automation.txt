@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Automation Course</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #0d0d0d;
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .cta-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1em;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background-color: #45a049;
+    }
+
+    .features ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Social Media Automation Course</h1>
+  <p>Leer hoe je geld verdient met social media, automatisch.</p>
+  <a href="#bestellen" class="cta-button">Bestel nu jouw course</a>
+</header>
+
+<div class="container">
+  <section class="features">
+    <h2>Wat zit er in de course?</h2>
+    <ul>
+      <li>Stappenplan om geld te verdienen via Instagram en TikTok</li>
+      <li>Automatiseringstools eenvoudig uitgelegd</li>
+      <li>Direct toepasbare tips voor beginners</li>
+      <li>Online support bij vragen</li>
+    </ul>
+  </section>
+
+  <section id="bestellen">
+    <h2>Bestel jouw course</h2>
+    <p>De course kost slechts €29,99. Na betaling krijg je direct toegang tot alle lessen.</p>
+    <a class="cta-button" href="#">Koop de course</a>
+    <!-- Hier kun je een echte betaallink toevoegen zoals via PayPal, Mollie of Stripe -->
+  </section>
+
+  <section id="contact">
+    <h2>Contact opnemen</h2>
+    <p>Heb je vragen? Laat hier je bericht achter:</p>
+    <form action="#" method="POST">
+      <label>Naam</label>
+      <input type="text" name="naam" required>
+      <label>E-mailadres</label>
+      <input type="email" name="email" required>
+      <label>Bericht</label>
+      <textarea name="bericht" rows="5" required></textarea>
+      <button type="submit">Verstuur</button>
+    </form>
+  </section>
+</div>
+
+<footer>
+  &copy; 2025 Jouw Bedrijfsnaam – Alle rechten voorbehouden
+</footer>
+
+</body>
+</html>
