@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "nomi_night": {
+      "type": "nomi-night",
+      "settings": {}
+    }
+  },
+  "order": [
+    "nomi_night"
+  ]
+}

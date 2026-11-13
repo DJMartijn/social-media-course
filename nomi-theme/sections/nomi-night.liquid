@@ -1,0 +1,373 @@
+{%- comment -%}
+  NOMI Gold Night: donkere, geanimeerde homepage. Producten, prijzen, foto's en links
+  komen live uit de winkel; teksten over personalisatie staan in assets/nomi-night.js.
+{%- endcomment -%}
+{%- liquid
+  assign p_naam = all_products['naamketting']
+  assign p_oor = all_products['symbool-oorstekers']
+  assign p_gift = all_products['luxe-cadeauset']
+  assign ship_cents = settings.free_shipping_threshold | default: 40 | times: 100
+  assign jewel_count = collections['setkorting-sieraden'].products_count | default: 20
+  assign ex_a = p_naam.price | default: 3295
+  assign ex_b = p_oor.price | default: 2495
+  assign ex_sum = ex_a | plus: ex_b
+  assign ex_disc = ex_sum | times: 10 | divided_by: 100
+  assign ex_tot = ex_sum | minus: ex_disc
+  assign ex_max = ship_cents | times: 1.5
+-%}
+{{ 'nomi-night.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Pinyon+Script&display=swap">
+<script type="application/json" id="nn-data">[
+{%- for p in collections.all.products limit: 60 -%}
+{"h":{{ p.handle | json }},"t":{{ p.title | json }},"ty":{{ p.type | json }},"p":{{ p.price | divided_by: 100.0 | json }},"u":{{ p.url | json }},"av":{{ p.available | json }},"i1":{% if p.images[0] %}{{ p.images[0] | image_url: width: 720 | json }}{% else %}null{% endif %},"i2":{% if p.images[1] %}{{ p.images[1] | image_url: width: 720 | json }}{% else %}null{% endif %}},
+{%- endfor -%}
+null]</script>
+<div class="nn">
+<div class="nn-bg" aria-hidden="true"><div class="nn-bg-in">
+  <canvas id="nn-silk"></canvas>
+  <canvas id="nn-silk-glow"></canvas>
+  <div class="nn-atmo"></div>
+  <div class="nn-grain"></div>
+</div></div>
+
+
+
+<div class="nn-main">
+  <!-- HERO -->
+  <section class="nn-hero">
+    <div class="nn-wrap nn-hero-grid">
+      <div class="nn-hero-copy">
+        <span class="nn-pill"><i class="nn-dot"></i>14k verguld · nikkelvrij · {{ jewel_count }} sieraden</span>
+        <h1>Een naam. Een datum.<br><em>Een herinnering.</em></h1>
+        <p class="nn-lead">Persoonlijke damessieraden met jouw naam, initiaal of een datum die iets voor je betekent. Met een laser gegraveerd en binnen 2–4 werkdagen verzonden.</p>
+        <div class="nn-cta-row">
+          <a class="nn-btn nn-btn-gold" href="#nn-atelier" id="nn-hero-design">Ontwerp de jouwe</a>
+          <a class="nn-btn nn-btn-ghost" href="#nn-collectie"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg>Bekijk de collectie</a>
+        </div>
+        <p class="nn-micro">gratis verzending vanaf €40 / setkorting tot 20% / cadeauklaar verpakt</p>
+      </div>
+
+      <div class="nn-console nn-glass nn-blur nn-rv" id="nn-atelier" aria-label="Gravure-atelier">
+        <div class="nn-con-head">
+          <span class="nn-mono">gravure-atelier</span>
+          <span class="nn-mono" id="nn-con-path">naamketting / 1 tekst</span>
+          <span class="nn-live"><i class="nn-dot"></i>live</span>
+        </div>
+        <div class="nn-modes" id="nn-modes" role="group" aria-label="Kies een sieraad"></div>
+        <div class="nn-field">
+          <label for="nn-engrave" id="nn-engrave-label">jouw naam</label>
+          <input id="nn-engrave" type="text" autocomplete="off" spellcheck="false" maxlength="12" value="Sophie">
+          <span class="nn-count" id="nn-count">6/12</span>
+        </div>
+        <div class="nn-stage">
+          <span class="nn-mono nn-tag" id="nn-stage-tag">voorbeeld · ware grootte verschilt</span>
+          <span class="nn-mono nn-tag nn-r">14k</span>
+          <svg id="nn-preview" viewBox="0 0 440 236" role="img" aria-label="Voorbeeld van je gravure">
+            <defs>
+              <linearGradient id="nn-gg" x1="0" y1="0" x2="1" y2=".35" spreadMethod="reflect">
+                <stop offset="0" stop-color="#7d5c2a"/>
+                <stop offset=".28" stop-color="#C9A66B"/>
+                <stop offset=".5" stop-color="#FBEBC6"/>
+                <stop offset=".72" stop-color="#C9A66B"/>
+                <stop offset="1" stop-color="#8a6a32"/>
+                <animateTransform attributeName="gradientTransform" type="translate" values="-0.6 0;0.6 0;-0.6 0" dur="7s" repeatCount="indefinite"/>
+              </linearGradient>
+              <radialGradient id="nn-gcoin" cx=".38" cy=".32" r=".8">
+                <stop offset="0" stop-color="#FBEBC6"/>
+                <stop offset=".45" stop-color="#D9B77A"/>
+                <stop offset=".85" stop-color="#A7843F"/>
+                <stop offset="1" stop-color="#7d5c2a"/>
+              </radialGradient>
+              <filter id="nn-soft" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000" flood-opacity=".55"/></filter>
+            </defs>
+            <g id="nn-pv"></g>
+          </svg>
+        </div>
+        <svg class="nn-flow" viewBox="0 0 440 52" aria-hidden="true">
+          <path id="nn-flowpath" d="M30 18 C 80 18, 100 18, 150 18 S 240 18, 290 18 S 370 18, 410 18" fill="none" stroke="rgba(247,244,239,.17)" stroke-width="1" stroke-dasharray="3 4"/>
+          <g><circle class="nn-node" cx="30" cy="18" r="9"/><circle class="nn-core" cx="30" cy="18" r="4" style="animation-delay:0s"/><text x="30" y="46" text-anchor="middle">jouw tekst</text></g>
+          <g><circle class="nn-node" cx="150" cy="18" r="9"/><circle class="nn-core" cx="150" cy="18" r="4" style="animation-delay:1s"/><text x="150" y="46" text-anchor="middle">laser</text></g>
+          <g><circle class="nn-node" cx="290" cy="18" r="9"/><circle class="nn-core" cx="290" cy="18" r="4" style="animation-delay:2s"/><text x="290" y="46" text-anchor="middle">doosje</text></g>
+          <g><circle class="nn-node" cx="410" cy="18" r="9"/><circle class="nn-core" cx="410" cy="18" r="4" style="animation-delay:3s"/><text x="410" y="46" text-anchor="middle">PostNL</text></g>
+          <circle r="3" fill="#F0DDB4"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#nn-flowpath"/></animateMotion></circle>
+        </svg>
+        <dl class="nn-specs" id="nn-specs"></dl>
+        <a class="nn-btn nn-btn-gold nn-btn-block" id="nn-con-link" href="{{ p_naam.url }}">Personaliseer de Naamketting <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VITRINES -->
+  <section class="nn-strip" aria-label="Vitrines">
+    <div class="nn-wrap">
+      <div class="nn-strip-head"><span class="nn-mono">de vitrines</span><span class="nn-mono">{{ jewel_count }} sieraden + cadeaubon</span></div>
+      <div class="nn-cats">
+        <a class="nn-cat" href="{{ routes.collections_url }}/kettingen"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 7c3 15 9 20 14 20s11-5 14-20"/><path d="M20 27v2"/><circle cx="20" cy="32.5" r="3.2"/></svg><b>Kettingen</b><span class="nn-mono">{{ collections["kettingen"].products_count }} ontwerpen</span></a>
+        <a class="nn-cat" href="{{ routes.collections_url }}/armbanden"><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="14" ry="8"/><circle cx="20" cy="30.5" r="2.6"/><path d="M20 28v-.5"/></svg><b>Armbanden</b><span class="nn-mono">{{ collections["armbanden"].products_count }} ontwerpen</span></a>
+        <a class="nn-cat" href="{{ routes.collections_url }}/ringen"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="24" r="10"/><circle cx="20" cy="24" r="7.5"/><path d="m16.5 11 3.5-4 3.5 4-3.5 3z"/></svg><b>Ringen</b><span class="nn-mono">{{ collections["ringen"].products_count }} ontwerpen</span></a>
+        <a class="nn-cat" href="{{ routes.collections_url }}/oorbellen"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="13" cy="19" r="4"/><circle cx="27" cy="19" r="4"/><path d="M13 23v5M27 23v5"/></svg><b>Oorbellen</b><span class="nn-mono">{{ collections["oorbellen"].products_count }} ontwerpen</span></a>
+        <a class="nn-cat" href="{{ routes.collections_url }}/sets"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 6c3 12 7 16 11 16s8-4 11-16"/><circle cx="16" cy="25" r="2.4"/><circle cx="29" cy="27" r="6"/></svg><b>Sets</b><span class="nn-mono">{{ collections["sets"].products_count }} ontwerpen</span></a>
+        <a class="nn-cat" href="{{ routes.collections_url }}/cadeaubonnen"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="15" width="26" height="18" rx="2"/><path d="M7 21h26M20 15v18M20 15c-3-6-9-6-8-2 1 3 8 2 8 2zM20 15c3-6 9-6 8-2-1 3-8 2-8 2z"/></svg><b>Cadeaubon</b><span class="nn-mono">€10 – €100</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="nn-statement" aria-label="Het idee">
+    <div class="nn-wrap nn-head nn-rv" style="margin-bottom:0">
+      <span class="nn-pill"><i class="nn-dot"></i>het idee</span>
+      <h2>Elk sieraad begint <em>leeg</em>.</h2>
+      <p>Een ketting, een ring of een armband is nog van niemand. Met jouw naam, initiaal, datum of een plek wordt het van iemand. Die tekst graveren we met een laser, strak en blijvend.</p>
+    </div>
+  </section>
+
+  <!-- MORPH -->
+  <section class="nn-morph" id="nn-voor-jou" aria-label="Gemaakt voor jou">
+    <div class="nn-morph-stage" id="nn-morph-stage">
+      <div class="nn-morph-intro">
+        <span class="nn-mono">van basis naar sieraad</span>
+        <h2>Een klein plaatje <em>goud</em>.</h2>
+      </div>
+      <div class="nn-tile" id="nn-tile">
+        <span class="nn-tile-n" aria-hidden="true">N</span>
+        <div class="nn-tile-field">
+          <span class="nn-tf nn-tl">14k verguld</span>
+          <span class="nn-tf nn-tr">rvs · nikkelvrij</span>
+          <span class="nn-tf nn-bl">met een laser gegraveerd</span>
+          <span class="nn-tf nn-br">2–4 werkdagen</span>
+          <h2>Gemaakt<br><em>voor jou.</em></h2>
+        </div>
+        <div class="nn-tile-medal" aria-hidden="true">
+          <span class="nn-medal-ring"></span>
+          <span class="nn-medal-name" id="nn-medal-name">Sophie</span>
+        </div>
+      </div>
+      <p class="nn-mono nn-morph-cap">scroll verder</p>
+      <div class="nn-morph-after" id="nn-morph-after">
+        <p><span id="nn-medal-label">Sophie</span>, gegraveerd op een rond muntje. Zo wordt een sieraad van jou.</p>
+        <a class="nn-btn nn-btn-ghost" href="#nn-collectie">Kies je sieraad</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIE -->
+  <section class="nn-block nn-veil" id="nn-collectie" aria-label="Collectie">
+    <div class="nn-wrap">
+      <div class="nn-head nn-rv">
+        <span class="nn-pill"><i class="nn-dot"></i>de collectie</span>
+        <h2>Kies je <em>basis</em>.</h2>
+        <p>Elk sieraad is 14k verguld roestvrij staal en nikkelvrij. Tik op een sieraad voor de details, de maten en wat je kunt laten graveren.</p>
+      </div>
+      <div class="nn-filters" id="nn-filters" role="group" aria-label="Filter op soort"></div>
+      <div class="nn-grid" id="nn-grid"></div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="nn-block" aria-label="Details">
+    <div class="nn-wrap">
+      <div class="nn-head nn-rv">
+        <span class="nn-pill"><i class="nn-dot"></i>de details</span>
+        <h2><em>Klein</em> in alles wat telt.</h2>
+        <p>Je draagt het elke dag. Daarom kloppen ook de dingen die je niet meteen ziet: het materiaal, de gravure, de verpakking en de levering.</p>
+      </div>
+      <div class="nn-bento">
+        <article class="nn-glass nn-bx nn-s3 nn-rv">
+          <h3>14k verguld, nikkelvrij</h3>
+          <p>Een kern van roestvrij staal met een laagje 14-karaats goud. Hard en krasvast, en fijn voor een gevoelige huid.</p>
+          <div class="nn-viz nn-layers" aria-label="Opbouw van het materiaal">
+            <div class="nn-ly"><span class="nn-bar nn-gold"></span><span class="nn-mono"><b>14k</b> goudlaag</span></div>
+            <div class="nn-ly"><span class="nn-bar nn-steel"></span><span class="nn-mono">roestvrij staal (RVS)</span></div>
+            <div class="nn-ly"><span class="nn-bar nn-free"></span><span class="nn-mono">nikkel: 0</span></div>
+          </div>
+        </article>
+        <article class="nn-glass nn-bx nn-s3 nn-rv">
+          <h3>Met een laser gegraveerd</h3>
+          <p>Strak en blijvend. Van één initiaal tot de coördinaten van jouw plek, in 40 tekens.</p>
+          <div class="nn-viz nn-engrave">
+            <div class="nn-plate"><span class="nn-et" id="nn-eng-text">52.3676° N, 4.9041° E</span><i class="nn-laser" aria-hidden="true"></i></div>
+            <span class="nn-mono" id="nn-eng-meta">coördinaten-armband · max. 40 tekens</span>
+          </div>
+        </article>
+        <article class="nn-glass nn-bx nn-s2 nn-rv">
+          <h3>Binnen 2–4 werkdagen</h3>
+          <p>We maken je sieraad speciaal voor jou en versturen het met PostNL.</p>
+          <div class="nn-viz nn-ship">
+            <ol><li>besteld</li><li>gegraveerd</li><li>verpakt</li><li>PostNL</li></ol>
+            <div class="nn-track"><i></i></div>
+            <span class="nn-mono">verzonden binnen 2–4 werkdagen</span>
+          </div>
+        </article>
+        <article class="nn-glass nn-bx nn-s2 nn-rv">
+          <h3>Gratis verzending vanaf {{ ship_cents | money_without_trailing_zeros }}</h3>
+          <p>In Nederland. Met twee sieraden zit je er bijna altijd boven.</p>
+          <div class="nn-viz nn-meter" aria-label="Rekenvoorbeeld gratis verzending">
+            <div class="nn-mrow"><span>{{ p_naam.title }}</span><b>{{ ex_a | money }}</b><span class="nn-mbar"><i style="--v:{{ ex_a | times: 100.0 | divided_by: ex_max | round: 1 }}%"></i><span class="nn-tick" style="left:{{ ship_cents | times: 100.0 | divided_by: ex_max | round: 2 }}%"></span></span><span class="nn-mnote">{% if ex_a < ship_cents %}nog {{ ship_cents | minus: ex_a | money }} tot gratis verzending{% else %}gratis verzending{% endif %}</span></div>
+            <div class="nn-mrow"><span>+ {{ p_oor.title }}, −10%</span><b>{{ ex_tot | money }}</b><span class="nn-mbar"><i style="--v:{{ ex_tot | times: 100.0 | divided_by: ex_max | round: 1 }}%"></i><span class="nn-tick" style="left:{{ ship_cents | times: 100.0 | divided_by: ex_max | round: 2 }}%"></span></span><span class="nn-mnote{% if ex_tot >= ship_cents %} nn-ok{% endif %}">setkorting {{ ex_disc | money }}{% if ex_tot >= ship_cents %} · gratis verzending{% endif %}</span></div>
+          </div>
+        </article>
+        <article class="nn-glass nn-bx nn-s2 nn-rv">
+          <h3>Ringmaat 16 tot 19 mm</h3>
+          <p>Elke ring komt in vier maten. Twijfel je? Meet een ring die je al hebt.</p>
+          <div class="nn-viz nn-ringsize">
+            <svg viewBox="0 0 132 132" aria-hidden="true">
+              <circle cx="66" cy="66" r="57" fill="none" stroke="rgba(247,244,239,.12)" stroke-dasharray="2 4"/>
+              <circle cx="66" cy="66" r="48" fill="none" stroke="rgba(247,244,239,.12)" stroke-dasharray="2 4"/>
+              <circle id="nn-rs-c" cx="66" cy="66" r="51" fill="none" stroke="url(#nn-gg)" stroke-width="7"/>
+              <text id="nn-rs-t" x="66" y="74" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="26" fill="#F0DDB4">17</text>
+            </svg>
+            <div class="nn-rs-side">
+              <div class="nn-rs-btns" id="nn-rs-btns" role="group" aria-label="Kies een ringmaat"></div>
+              <span class="nn-mono" id="nn-rs-m">binnendiameter 17 mm · omtrek 53,4 mm</span>
+            </div>
+          </div>
+        </article>
+        <article class="nn-glass nn-bx nn-s6 nn-rv">
+          <div class="nn-gift">
+            {%- if p_gift.featured_image -%}{{ p_gift.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: 'Sieradendoosje met een hartjesketting en oorstekers, klaar om te geven', sizes: '(max-width: 760px) 100vw, 35vw' }}{%- endif -%}
+            <div class="nn-gift-copy">
+              <span class="nn-mono">cadeauklaar</span>
+              <h3 style="font-size:clamp(28px,3vw,38px)">Open het. <span class="nn-gold-text">En het is van jou.</span></h3>
+              <p>Je sieraad in een crèmekleurig sieradendoosje met strik, met een kaartje met jouw boodschap. Voor €3,95 extra.</p>
+              <ul>
+                <li>vaste ontwerpen: 14 dagen bedenktijd</li>
+                <li>gepersonaliseerd: uitgesloten van retour, dus check je tekst goed</li>
+                <li>de Luxe Cadeauset zit al in een doosje</li>
+              </ul>
+              <a class="nn-btn nn-btn-ghost" href="{{ routes.collections_url }}/cadeaus">Bekijk alle cadeaus</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GELEGENHEDEN -->
+  <section class="nn-block nn-veil" id="nn-cadeaus" aria-label="Cadeaus per gelegenheid">
+    <div class="nn-wrap">
+      <div class="nn-head nn-rv">
+        <span class="nn-pill"><i class="nn-dot"></i>cadeau geven</span>
+        <h2>Voor <em>wie</em> is het?</h2>
+        <p>Kies de gelegenheid. Je ziet meteen welke sieraden erbij passen, met de prijs erbij.</p>
+      </div>
+      <div class="nn-occ">
+        <div class="nn-occ-tabs" id="nn-occ-tabs" role="tablist" aria-label="Gelegenheden"></div>
+        <div class="nn-glass nn-occ-panel" id="nn-occ-panel" role="tabpanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETALLEN -->
+  <section class="nn-block" aria-label="Keuzes in getallen">
+    <div class="nn-wrap">
+      <div class="nn-head nn-rv">
+        <span class="nn-pill"><i class="nn-dot"></i>keuzes</span>
+        <h2>Alles wat je kunt kiezen, <em>in getallen</em>.</h2>
+        <p>Een sterrenbeeld, een geboortesteen, een symbool of een rij initialen. Zoveel ruimte heb je.</p>
+      </div>
+      <div class="nn-stats nn-rv">
+        <div class="nn-stat"><b data-to="12">12</b><strong>sterrenbeelden</strong><span>op de sterrenbeeld-ring en -armband</span></div>
+        <div class="nn-stat"><b data-to="12">12</b><strong>geboortestenen</strong><span>één kleur per maand, geslepen zirkonia</span></div>
+        <div class="nn-stat"><b data-to="3">3</b><strong>symbolen</strong><span>maantje, hartje of veertje</span></div>
+        <div class="nn-stat"><b data-to="5">5</b><strong>initialen</strong><span>op de familieketting</span></div>
+        <div class="nn-stat"><b data-to="40">40</b><strong>tekens</strong><span>op de coördinaten-armband</span></div>
+        <div class="nn-stat"><b data-to="14">14</b><strong>karaat</strong><span>het goudlaagje op elk sieraad</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETKORTING -->
+  <section class="nn-block nn-veil" id="nn-setkorting" aria-label="Setkorting">
+    <div class="nn-wrap">
+      <div class="nn-head nn-rv">
+        <span class="nn-pill"><i class="nn-dot"></i>setkorting</span>
+        <h2>Combineer en <em>bespaar</em>.</h2>
+        <p>Kies je meerdere sieraden, dan krijg je automatisch korting in je winkelmandje. Je hebt geen code nodig.</p>
+      </div>
+      <div class="nn-tiers">
+        <div class="nn-glass nn-tier" data-min="2"><span class="nn-mono">2 sieraden</span><b>10<small>%</small></b><p>Een ketting met bijpassende oorbellen.</p></div>
+        <div class="nn-glass nn-tier" data-min="3"><span class="nn-mono">3 sieraden</span><b>15<small>%</small></b><p>Een ketting, een armband en een ring.</p></div>
+        <div class="nn-glass nn-tier" data-min="4"><span class="nn-mono">4 of meer</span><b>20<small>%</small></b><p>Een complete set, of cadeaus voor meerdere mensen.</p></div>
+      </div>
+      <div class="nn-builder">
+        <div class="nn-glass nn-picker">
+          <div class="nn-occ-top"><span class="nn-mono">stel je set samen · tik om toe te voegen</span></div>
+          <div class="nn-picker-list" id="nn-picker"></div>
+        </div>
+        <aside class="nn-glass nn-summary" aria-label="Jouw set">
+          <div class="nn-occ-top"><span class="nn-mono">jouw set</span><span class="nn-mono" id="nn-set-count">2 sieraden</span></div>
+          <div class="nn-lines" id="nn-lines"></div>
+          <div class="nn-totals" id="nn-totals"></div>
+          <div class="nn-shipbar" aria-hidden="true"><i id="nn-shipbar"></i></div>
+          <p class="nn-hint" id="nn-ship-hint"></p>
+          <p class="nn-hint" id="nn-tier-hint"></p>
+          <a class="nn-btn nn-btn-gold nn-btn-block" href="{{ routes.all_products_collection_url }}">Naar de winkel <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+          <p class="nn-hint">Indicatie. Je personaliseert elk sieraad in de winkel; de setkorting wordt daar automatisch verrekend.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFSLUITER -->
+  <section class="nn-block" aria-label="Begin met jouw naam">
+    <div class="nn-wrap nn-cta">
+      <div class="nn-glass nn-cta-left nn-rv">
+        <span class="nn-big-n" aria-hidden="true">N</span>
+        <a class="nn-brand" href="{{ routes.root_url }}"><svg viewBox="0 0 30 30" aria-hidden="true"><defs><linearGradient id="nn-gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0DDB4"/><stop offset=".5" stop-color="#C9A66B"/><stop offset="1" stop-color="#86662B"/></linearGradient></defs><rect x="1" y="1" width="28" height="28" rx="8.5" fill="url(#nn-gm)"/><text x="15" y="21" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="17" font-weight="500" fill="#2B2213">N</text></svg><span class="nn-word">NOMI</span></a>
+        <p>Persoonlijke damessieraden, 14k verguld en nikkelvrij. Voor jezelf, of om te geven.</p>
+        <span class="nn-mono">gratis verzending vanaf €40 · setkorting tot 20%</span>
+      </div>
+      <div class="nn-cta-card nn-rv">
+        <span class="nn-mono">de naamketting · {{ p_naam.price | money }}</span>
+        <h2>Wiens naam <em>draag jij?</em></h2>
+        <p>Typ een naam en zie hem meteen in doorlopende letters. Maximaal 12 tekens.</p>
+        <div class="nn-cta-preview" id="nn-cta-preview" aria-live="polite">Sophie</div>
+        <form class="nn-cta-form" id="nn-cta-form">
+          <label for="nn-cta-name">Naam voor de naamketting</label>
+          <input id="nn-cta-name" type="text" maxlength="12" autocomplete="off" spellcheck="false" placeholder="Typ een naam" value="Sophie">
+          <a class="nn-btn" id="nn-cta-link" href="{{ p_naam.url }}">Maak de naamketting</a>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<dialog id="nn-qv" aria-labelledby="nn-qv-title">
+  <div class="nn-qv">
+    <button class="nn-qv-close" id="nn-qv-close" type="button" aria-label="Sluiten"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3.5 3.5 9 9m0-9-9 9"/></svg></button>
+    <div class="nn-qv-media">
+      <img id="nn-qv-img" alt="">
+      <div class="nn-qv-thumbs" id="nn-qv-thumbs"></div>
+    </div>
+    <div class="nn-qv-body">
+      <span class="nn-mono" id="nn-qv-type">kettingen</span>
+      <h2 id="nn-qv-title">Naamketting</h2>
+      <span class="nn-qv-price" id="nn-qv-price">€32,95</span>
+      <p id="nn-qv-desc"></p>
+      <div class="nn-tags" id="nn-qv-tags"></div>
+      <dl class="nn-qv-specs" id="nn-qv-specs"></dl>
+      <div class="nn-qv-actions">
+        <a class="nn-btn nn-btn-gold" id="nn-qv-link" href="{{ p_naam.url }}">Personaliseer in de winkel <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+        <button class="nn-btn nn-btn-ghost" id="nn-qv-add" type="button">Zet in je set</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<div class="nn-toast" id="nn-toast" role="status" aria-live="polite" hidden></div>
+</div>
+<script src="{{ 'nomi-night.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "NOMI Gold Night",
+  "tag": "section",
+  "class": "nn-section",
+  "settings": [],
+  "presets": [{ "name": "NOMI Gold Night" }],
+  "enabled_on": { "templates": ["index"] }
+}
+{% endschema %}
