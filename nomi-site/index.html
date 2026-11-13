@@ -1,0 +1,1307 @@
+<title>NOMI Jewelry</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Persoonlijke damessieraden met jouw naam, initiaal of datum. 14k verguld en nikkelvrij.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<style>
+:root{
+  /* Layout: één vaste canvas met gouden lichtdraden achter glazen panelen. Scrollen stuurt de draden; één sticky goud-tegel die openvouwt tot medaillon is het hoogtepunt. */
+  --night:#13110e;
+  --night-2:#1c1915;
+  --cream:#F7F4EF;
+  --gold:#C9A66B;
+  --gold-lite:#E4C891;
+  --gold-hi:#F0DDB4;
+  --gold-mid:#B48D50;
+  --gold-deep:#86662B;
+  --bronze:#4A3815;
+  --rose:#D9B8A8;
+  --on-gold:#2B2213;
+  --steel:#a19c94;
+  --steel-dark:#5e5a54;
+  --fg:#F7F4EF;
+  --muted:rgba(247,244,239,.70);
+  --dim:rgba(247,244,239,.48);
+  --line:rgba(247,244,239,.09);
+  --line-2:rgba(247,244,239,.17);
+  --line-gold:rgba(240,221,180,.38);
+  --glass:rgba(27,24,20,.62);
+  --glass-solid:rgba(24,21,18,.9);
+  --veil:rgba(19,17,14,.72);
+  --shade:rgba(0,0,0,.6);
+  --f-display:'Playfair Display','Iowan Old Style',Georgia,serif;
+  --f-body:'Assistant','Segoe UI',system-ui,-apple-system,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --f-script:'Pinyon Script','Snell Roundhand','Apple Chancery',cursive;
+  --r:20px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;background:var(--night)}
+body{background:var(--night);color:var(--fg);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+
+/* ---------- achtergrond ---------- */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#silk,#silk-glow{position:absolute;inset:0;width:100%;height:100%}
+#silk-glow{filter:blur(14px) saturate(1.2);opacity:.9;mix-blend-mode:screen}
+.atmo{position:absolute;inset:0;background:
+  radial-gradient(60% 50% at 80% -8%,rgba(201,166,107,.16),transparent 70%),
+  radial-gradient(50% 40% at 0% 105%,rgba(217,184,168,.10),transparent 70%),
+  radial-gradient(130% 95% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+.grain{position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main,.nav,footer{position:relative;z-index:1}
+main{overflow-x:clip}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:-.015em;text-wrap:balance;margin:0}
+h1{font-size:clamp(46px,6.4vw,90px);line-height:1.0}
+h2{font-size:clamp(36px,4.6vw,64px);line-height:1.05}
+h3{font-size:23px;line-height:1.25}
+h1 em,h2 em,.gold-text{font-style:italic;background:linear-gradient(100deg,var(--gold-hi) 8%,var(--gold) 48%,var(--rose) 92%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.01em;color:var(--dim)}
+.lead{font-size:clamp(17px,1.35vw,19px);color:var(--muted);max-width:46ch}
+.wrap{width:100%;max-width:1280px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* ---------- basis-onderdelen ---------- */
+.pill{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border-radius:999px;font:500 12px/1 var(--f-mono);color:var(--muted);background:rgba(19,17,14,.6);box-shadow:inset 0 0 0 1px var(--line-2);white-space:nowrap}
+.dot{width:6px;height:6px;flex:none;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(201,166,107,.18),0 0 12px var(--gold);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(201,166,107,.04),0 0 18px var(--gold)}}
+.btn{--h:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:var(--h);padding:0 22px;border-radius:999px;font:600 15px/1 var(--f-body);text-decoration:none;cursor:pointer;border:0;white-space:nowrap;transition:transform .25s var(--ease),box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-sm{--h:38px;padding:0 16px;font-size:14px}
+.btn-gold{background:linear-gradient(180deg,var(--gold-lite),var(--gold));color:var(--on-gold);box-shadow:inset 0 1px 0 rgba(255,246,225,.6),0 10px 30px -10px rgba(201,166,107,.75)}
+.btn-gold:hover{box-shadow:inset 0 1px 0 rgba(255,246,225,.6),0 16px 44px -10px rgba(201,166,107,.95)}
+.btn-ghost{background:rgba(27,24,20,.55);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-2)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--line-gold)}
+.btn-block{width:100%}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.glass{position:relative;background:var(--glass);border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line),inset 0 1px 0 rgba(255,255,255,.05),0 40px 90px -40px var(--shade);isolation:isolate}
+.glass.blur{-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(240,221,180,.08),transparent 60%);opacity:0;transition:opacity .4s}
+.glass:hover::after{opacity:1}
+.rv{transition:transform 1s var(--ease)}
+.rv.pre{transform:translateY(34px)}
+
+/* ---------- navigatie ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(19,17,14,.58);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;gap:24px;height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--fg)}
+.brand svg{width:30px;height:30px;flex:none}
+.brand .word{font-family:var(--f-display);font-size:21px;letter-spacing:.2em;display:flex;align-items:baseline;gap:9px}
+.brand small{font:500 10.5px var(--f-mono);letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.links{flex:1;display:flex;justify-content:center;gap:30px}
+.links a{color:var(--muted);text-decoration:none;font-size:15px;transition:color .2s}
+.links a:hover{color:var(--fg)}
+.nav-r{display:flex;align-items:center;gap:12px}
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:1px;overflow:hidden}
+.progress i{display:block;height:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,transparent,var(--gold) 40%,var(--gold-hi))}
+@media (max-width:980px){.links{display:none}.nav-r{margin-left:auto}}
+@media (max-width:600px){.nav-pill{display:none}.brand small{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(48px,8vw,110px) clamp(56px,8vw,110px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px,5vw,76px);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:26px;align-items:flex-start;min-width:0}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.micro{font:400 12.5px/1.6 var(--f-mono);color:var(--dim)}
+@media (max-width:1000px){.hero-grid{grid-template-columns:1fr}}
+
+.console{padding:16px;display:flex;flex-direction:column;gap:13px;min-width:0}
+.con-head{display:flex;align-items:center;gap:12px;padding:2px 4px 0}
+.con-head .live{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font:500 12px var(--f-mono);color:var(--gold-hi)}
+.modes{display:flex;gap:4px;padding:4px;border-radius:12px;background:rgba(0,0,0,.28);box-shadow:inset 0 0 0 1px var(--line);overflow-x:auto;scrollbar-width:none}
+.modes::-webkit-scrollbar{display:none}
+.modes button{flex:1 0 auto;border:0;background:transparent;color:var(--muted);font:500 14px var(--f-body);padding:8px 12px;border-radius:9px;cursor:pointer;transition:background .25s,color .25s}
+.modes button:hover{color:var(--fg)}
+.modes button[aria-pressed="true"]{background:rgba(240,221,180,.13);color:var(--fg);box-shadow:inset 0 0 0 1px rgba(240,221,180,.25)}
+.field{display:flex;align-items:center;gap:12px;padding:0 14px;height:52px;border-radius:12px;background:rgba(0,0,0,.3);box-shadow:inset 0 0 0 1px var(--line-2);transition:box-shadow .25s}
+.field:focus-within{box-shadow:inset 0 0 0 1px var(--line-gold),0 0 0 4px rgba(201,166,107,.12)}
+.field label{font:500 12px var(--f-mono);color:var(--dim);white-space:nowrap}
+.field input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--fg);font:500 18px var(--f-body)}
+.field .count{font:500 12px var(--f-mono);color:var(--dim);font-variant-numeric:tabular-nums}
+.stage{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(80% 90% at 50% 25%,rgba(240,221,180,.11),transparent 70%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.38));box-shadow:inset 0 0 0 1px var(--line)}
+.stage svg{display:block;width:100%;height:auto}
+.stage .tag{position:absolute;left:12px;top:10px;font-size:11.5px}
+.stage .tag.r{left:auto;right:12px}
+.flow{display:block;width:100%;height:auto;overflow:visible}
+.flow text{font:500 10.5px var(--f-mono);fill:var(--dim)}
+.flow .node{fill:var(--night-2);stroke:var(--line-2);stroke-width:1}
+.flow .core{fill:var(--gold);opacity:.35;animation:node 4s ease-in-out infinite}
+@keyframes node{0%,100%{opacity:.3}12%{opacity:1}30%{opacity:.3}}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:5px 18px;margin:0;padding:2px 4px;font:400 12.5px/1.5 var(--f-mono)}
+.specs dt{color:var(--dim)}
+.specs dd{margin:0;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+/* ---------- vitrines ---------- */
+.strip{padding-block:0 12px}
+.strip-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.cat{display:flex;flex-direction:column;align-items:center;gap:9px;padding:18px 10px 15px;border-radius:14px;text-decoration:none;color:var(--muted);background:rgba(27,24,20,.5);box-shadow:inset 0 0 0 1px var(--line);transition:transform .35s var(--ease),box-shadow .3s,color .3s}
+.cat:hover{transform:translateY(-3px);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-gold)}
+.cat svg{width:40px;height:40px;stroke:var(--gold);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.cat b{font:600 15px var(--f-body)}
+.cat .mono{font-size:11.5px}
+@media (max-width:860px){.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---------- secties ---------- */
+.block{padding-block:clamp(88px,11vw,150px)}
+.head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:22px 64px;align-items:end;margin-bottom:clamp(36px,5vw,60px)}
+.head .pill{grid-column:1/-1;justify-self:start}
+.head p{color:var(--muted);max-width:44ch}
+@media (max-width:860px){.head{grid-template-columns:1fr}}
+.veil{background:linear-gradient(180deg,transparent,var(--veil) 140px,var(--veil) calc(100% - 140px),transparent)}
+.statement{padding-block:clamp(100px,13vw,190px) clamp(60px,8vw,110px)}
+.statement h2{font-size:clamp(42px,6.2vw,88px);line-height:1.02}
+
+/* ---------- morph ---------- */
+.morph{position:relative;height:340vh}
+.morph-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
+.tile{position:relative;width:var(--w,132px);height:var(--h,132px);border-radius:var(--rad,30px);overflow:hidden;background:linear-gradient(135deg,var(--gold-hi),var(--gold) 46%,var(--gold-mid) 78%,var(--gold-deep));box-shadow:inset 0 1px 0 rgba(255,250,235,.6),inset 0 -14px 40px rgba(134,102,43,.35),0 30px 120px -20px rgba(201,166,107,.55)}
+.tile-n{position:absolute;inset:0;display:grid;place-items:center;font:500 66px/1 var(--f-display);color:var(--on-gold);opacity:var(--n,1);text-shadow:0 1px 0 rgba(255,245,220,.6)}
+.tile-field,.tile-medal{position:absolute;left:50%;top:50%;width:100vw;height:100vh;height:100svh;transform:translate(-50%,-50%);pointer-events:none}
+.tile-field{opacity:var(--f,0);display:grid;place-items:center}
+.tile-field h2{color:var(--on-gold);font-size:clamp(56px,10.5vw,156px);line-height:.95;text-align:center;letter-spacing:-.02em;transform:translateY(calc((1 - var(--f,0)) * 40px))}
+.tile-field h2 em{background:none;color:var(--bronze);-webkit-text-fill-color:currentColor}
+.tf{position:absolute;max-width:40vw;font:500 12.5px/1.5 var(--f-mono);color:var(--on-gold);opacity:.72;letter-spacing:.12em;text-transform:uppercase}
+.tf.tr,.tf.br{text-align:right}
+@media (max-width:600px){.tf{font-size:10.5px;letter-spacing:.08em}}
+.tf.tl{top:clamp(90px,14vh,140px);left:max(24px,env(safe-area-inset-left,0px))}
+.tf.tr{top:clamp(90px,14vh,140px);right:max(24px,env(safe-area-inset-right,0px))}
+.tf.bl{bottom:clamp(40px,10vh,100px);left:max(24px,env(safe-area-inset-left,0px))}
+.tf.br{bottom:clamp(40px,10vh,100px);right:max(24px,env(safe-area-inset-right,0px))}
+.tile-medal{opacity:var(--m,0);display:grid;place-items:center}
+.medal-ring{position:absolute;left:50%;top:50%;width:calc(var(--w,300px) - 26px);height:calc(var(--w,300px) - 26px);transform:translate(-50%,-50%);border-radius:50%;box-shadow:inset 0 0 0 1px rgba(74,56,21,.35),0 0 0 1px rgba(255,248,230,.35)}
+.medal-name{font-family:var(--f-script);font-size:var(--mf,60px);line-height:1;color:var(--bronze);text-shadow:0 1px 0 rgba(255,245,220,.6),0 -1px 0 rgba(74,56,21,.25)}
+.morph-intro{position:absolute;top:clamp(110px,18vh,190px);left:0;right:0;text-align:center;opacity:var(--c,1);display:flex;flex-direction:column;align-items:center;gap:16px;padding-inline:20px}
+.morph-intro h2{font-size:clamp(34px,4.2vw,58px)}
+.morph-cap{position:absolute;bottom:max(32px,env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;opacity:var(--c,1)}
+.morph-after{position:absolute;bottom:clamp(48px,11vh,110px);left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;opacity:var(--a,0);padding-inline:20px}
+.morph-after p{color:var(--muted)}
+.morph.static{height:auto;padding-block:80px}
+.morph.static .morph-stage{position:relative;height:auto;display:flex;flex-direction:column;gap:32px;padding-inline:20px}
+.morph.static .morph-intro,.morph.static .morph-cap,.morph.static .morph-after{position:static;opacity:1}
+.morph.static .morph-cap,.morph.static .morph-after{display:none}
+.morph.static .tile{width:min(100%,1180px);height:min(70vh,560px);border-radius:28px}
+.morph.static .tile-n,.morph.static .tile-medal{display:none}
+.morph.static .tile-field{opacity:1;width:100%;height:100%}
+
+/* ---------- collectie ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;border-radius:999px;border:0;background:rgba(27,24,20,.65);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--muted);font:500 14.5px var(--f-body);cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.chip:hover{color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-gold)}
+.chip .n{font:500 11.5px var(--f-mono);color:var(--dim)}
+.chip[aria-pressed="true"]{background:linear-gradient(180deg,var(--gold-lite),var(--gold));color:var(--on-gold);box-shadow:none}
+.chip[aria-pressed="true"] .n{color:rgba(43,34,19,.65)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+.card{all:unset;box-sizing:border-box;display:flex;flex-direction:column;cursor:pointer;border-radius:18px;background:var(--glass-solid);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease),box-shadow .3s;min-width:0}
+.card[hidden]{display:none}
+.card:hover{box-shadow:inset 0 0 0 1px rgba(240,221,180,.32),0 30px 60px -30px var(--shade)}
+.card:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.card.in{animation:cardIn .6s var(--ease) both}
+@keyframes cardIn{from{transform:translateY(18px)}}
+.ph{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:var(--night-2)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s var(--ease),transform 1.2s var(--ease)}
+.ph img.b{opacity:0}
+.card:hover .ph img.a{transform:scale(1.05)}
+.card:hover .ph img.b{opacity:1;transform:scale(1.02)}
+.glare{position:absolute;inset:0;background:radial-gradient(520px circle at var(--gx,50%) var(--gy,0%),rgba(255,245,225,.22),transparent 45%);opacity:0;transition:opacity .4s;mix-blend-mode:soft-light}
+.card:hover .glare{opacity:1}
+.badge{position:absolute;left:10px;top:10px;padding:5px 9px;border-radius:999px;background:rgba(19,17,14,.66);font:500 11px/1.2 var(--f-mono);color:var(--gold-hi)}
+.badge.fixed{color:var(--muted)}
+.meta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;padding:14px 16px 16px}
+.meta .mono{grid-column:1/-1;font-size:11.5px}
+.meta .t{font:400 19px/1.25 var(--f-display);color:var(--fg)}
+.meta .price{font:500 13.5px var(--f-mono);color:var(--gold-hi);align-self:center;font-variant-numeric:tabular-nums}
+.meta .ps{grid-column:1/-1;font-size:14px;color:var(--dim);line-height:1.4}
+@media (max-width:520px){.meta{padding:12px;grid-template-columns:minmax(0,1fr)}.meta .t{font-size:17px}.meta .price{align-self:start}.meta .ps{display:none}.con-head #con-path{display:none}}
+
+/* ---------- snelle weergave ---------- */
+dialog#qv{padding:0;border:0;background:transparent;color:var(--fg);width:min(980px,calc(100vw - 32px));max-width:none;max-height:calc(100svh - 32px);overflow:visible}
+dialog#qv::backdrop{background:rgba(10,9,7,.66);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+dialog#qv[open]{animation:qvIn .45s var(--ease)}
+@keyframes qvIn{from{transform:translateY(16px) scale(.98)}}
+.qv{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);border-radius:22px;overflow:auto;max-height:calc(100svh - 32px);background:var(--glass-solid);box-shadow:inset 0 0 0 1px var(--line-2),0 50px 120px -30px var(--shade)}
+.qv-media{position:relative;background:var(--night-2);min-height:100%}
+.qv-media>img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.qv-thumbs{position:absolute;left:12px;bottom:12px;display:flex;gap:8px}
+.qv-thumbs button{width:54px;height:54px;padding:0;border:0;border-radius:10px;overflow:hidden;cursor:pointer;opacity:.65;box-shadow:inset 0 0 0 1px var(--line-2);transition:opacity .2s}
+.qv-thumbs button[aria-pressed="true"]{opacity:1;outline:2px solid var(--gold-hi);outline-offset:2px}
+.qv-thumbs img{width:100%;height:100%;object-fit:cover}
+.qv-body{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:16px;min-width:0}
+.qv-body h2{font-size:clamp(30px,3.2vw,42px)}
+.qv-price{font:500 16px var(--f-mono);color:var(--gold-hi)}
+.qv-body>p{color:var(--muted)}
+.qv-specs{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px}
+.qv-specs dt{font:500 12px/1.9 var(--f-mono);color:var(--dim)}
+.qv-specs dd{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font:500 11.5px var(--f-mono);padding:5px 9px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--muted)}
+.qv-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.qv-close{position:absolute;right:12px;top:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;background:rgba(19,17,14,.7);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-2)}
+@media (max-width:760px){.qv{grid-template-columns:1fr}.qv-media>img{aspect-ratio:1/1}}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.bx{padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.bx p{color:var(--muted);font-size:15.5px;max-width:52ch}
+.s3{grid-column:span 3}.s2{grid-column:span 2}.s6{grid-column:span 6}
+@media (max-width:1000px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.s3,.s2{grid-column:span 1}.s6{grid-column:1/-1}}
+@media (max-width:660px){.bento{grid-template-columns:1fr}.s3,.s2,.s6{grid-column:1/-1}}
+.viz{margin-top:auto;border-radius:14px;background:rgba(0,0,0,.26);box-shadow:inset 0 0 0 1px var(--line);padding:18px;position:relative;overflow:hidden}
+.layers{display:flex;flex-direction:column;gap:0}
+.ly{display:grid;grid-template-columns:1fr 168px;align-items:center;gap:16px}
+.ly .bar{display:block;border-radius:4px}
+.ly .gold{height:12px;border-radius:6px 6px 2px 2px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-hi),var(--gold),var(--gold-hi),var(--gold-deep));background-size:220% 100%;animation:sheen 5s linear infinite}
+.ly .steel{height:46px;border-radius:2px 2px 8px 8px;background:linear-gradient(180deg,var(--steel),var(--steel-dark))}
+.ly .free{height:12px;margin-top:12px;background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 12px)}
+.ly .mono{font-size:12px}
+.ly .mono b{color:var(--gold-hi);font-weight:500}
+@keyframes sheen{to{background-position:-220% 0}}
+.engrave{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;min-height:160px}
+.plate{position:relative;display:flex;align-items:center;justify-content:center;width:min(100%,360px);height:62px;padding:0 22px;border-radius:12px;background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-mid));box-shadow:inset 0 1px 0 rgba(255,250,235,.7),inset 0 -6px 14px rgba(134,102,43,.4),0 18px 40px -18px rgba(201,166,107,.7);color:var(--bronze);white-space:nowrap;overflow:hidden}
+.plate .et{font:500 15px var(--f-mono);text-shadow:0 1px 0 rgba(255,245,220,.6)}
+.plate .et.script{font:400 34px/1 var(--f-script)}
+.plate .et.serif{font:500 20px var(--f-display);letter-spacing:.06em}
+.plate .et.caps{font:600 18px var(--f-display);letter-spacing:.28em}
+.laser{display:inline-block;width:7px;height:7px;margin-left:4px;border-radius:50%;background:#fff6dc;box-shadow:0 0 6px 2px #fff1c9,0 0 22px 7px rgba(255,214,140,.85);flex:none}
+.ship ol{list-style:none;margin:0 0 14px;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.ship li{font:500 11.5px var(--f-mono);color:var(--muted);display:flex;flex-direction:column;gap:8px}
+.ship li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--night-2);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.track{position:relative;height:2px;background:var(--line-2);border-radius:2px;margin-bottom:12px}
+.track i{position:absolute;left:0;top:-1px;height:4px;width:100%;border-radius:4px;transform-origin:0 50%;background:linear-gradient(90deg,var(--gold),var(--gold-hi));animation:ship 6s var(--ease) infinite}
+@keyframes ship{0%{transform:scaleX(.02)}70%,100%{transform:scaleX(1)}}
+.meter{display:flex;flex-direction:column;gap:14px}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;font-size:14px}
+.mrow span:first-child{color:var(--muted)}
+.mrow b{font:500 13px var(--f-mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.mbar{grid-column:1/-1;position:relative;height:6px;border-radius:6px;background:var(--line)}
+.mbar i{display:block;height:100%;border-radius:inherit;width:var(--v);background:linear-gradient(90deg,var(--gold),var(--gold-hi))}
+.mbar .tick{position:absolute;left:66.67%;top:-5px;bottom:-5px;width:1px;background:var(--gold-hi)}
+.mnote{grid-column:1/-1;font:400 12px var(--f-mono);color:var(--dim)}
+.mnote.ok{color:var(--gold-hi)}
+.ringsize{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:center}
+.ringsize svg{width:132px;height:132px}
+.rs-btns{display:flex;gap:6px;flex-wrap:wrap}
+.rs-btns button{width:44px;height:38px;border-radius:10px;border:0;cursor:pointer;background:rgba(27,24,20,.8);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--muted);font:500 14px var(--f-mono)}
+.rs-btns button[aria-pressed="true"]{background:linear-gradient(180deg,var(--gold-lite),var(--gold));color:var(--on-gold);box-shadow:none}
+.rs-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.gift{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:28px;align-items:center}
+.gift img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 55%;border-radius:14px}
+.gift ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.gift li{display:flex;gap:10px;font:400 13px/1.5 var(--f-mono);color:var(--muted)}
+.gift li::before{content:"";flex:none;width:6px;height:6px;margin-top:7px;border-radius:50%;background:var(--gold)}
+.gift-copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+@media (max-width:760px){.gift{grid-template-columns:1fr}.ringsize{grid-template-columns:1fr;justify-items:center}}
+
+/* ---------- gelegenheden ---------- */
+.occ{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,2fr);gap:18px;align-items:start}
+.occ-tabs{display:flex;flex-direction:column;gap:6px}
+.occ-tabs button{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;border:0;border-radius:14px;cursor:pointer;text-align:left;background:rgba(27,24,20,.55);color:var(--muted);font:500 17px var(--f-body);box-shadow:inset 0 0 0 1px var(--line);transition:background .25s,color .25s,box-shadow .25s}
+.occ-tabs button:hover{color:var(--fg)}
+.occ-tabs button[aria-selected="true"]{color:var(--fg);background:rgba(240,221,180,.1);box-shadow:inset 0 0 0 1px var(--line-gold)}
+.occ-panel{padding:20px;min-width:0}
+.occ-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.occ-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px}
+.mini{display:flex;flex-direction:column;gap:8px;padding:0;border:0;background:none;cursor:pointer;text-align:left;min-width:0}
+.mini img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;transition:transform .5s var(--ease)}
+.mini:hover img{transform:translateY(-3px)}
+.mini span{font-size:15px;line-height:1.3}
+.mini .mono{font-size:11.5px}
+.bon{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center}
+.bon img{border-radius:14px;width:100%}
+.amounts{display:flex;flex-wrap:wrap;gap:8px}
+.amounts span{font:500 14px var(--f-mono);padding:8px 12px;border-radius:10px;box-shadow:inset 0 0 0 1px var(--line-gold);color:var(--gold-hi)}
+@media (max-width:860px){.occ{grid-template-columns:1fr}.occ-tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.occ-tabs button{flex:0 0 auto;font-size:15px;padding:12px 14px}.bon{grid-template-columns:1fr}}
+
+/* ---------- getallen ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border-radius:20px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.stat{background:rgba(22,19,16,.88);padding:28px 26px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat b{font:400 clamp(52px,6vw,86px)/1.05 var(--f-display);font-variant-numeric:tabular-nums lining-nums;background:linear-gradient(180deg,var(--gold-hi),var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.stat strong{font:600 17px var(--f-body)}
+.stat span{color:var(--dim);font-size:14.5px}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:22px 18px}}
+
+/* ---------- setkorting ---------- */
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:16px}
+.tier{padding:24px;display:flex;flex-direction:column;gap:4px;transition:background .4s,box-shadow .4s,transform .4s var(--ease)}
+.tier .mono{font-size:12px}
+.tier b{font:400 64px/1 var(--f-display);color:var(--fg)}
+.tier b small{font-size:.45em;color:var(--dim)}
+.tier p{color:var(--muted);font-size:15px}
+.tier.on{background:linear-gradient(180deg,rgba(240,221,180,.17),rgba(201,166,107,.05));box-shadow:inset 0 0 0 1px var(--line-gold),0 30px 80px -40px rgba(201,166,107,.6);transform:translateY(-4px)}
+.tier.on b{color:var(--gold-hi)}
+.builder{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+.picker{padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.picker-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:520px;overflow:auto;padding:2px;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.pick{display:grid;grid-template-columns:44px minmax(0,1fr) 28px;gap:12px;align-items:center;padding:8px;border:0;border-radius:12px;cursor:pointer;text-align:left;background:rgba(0,0,0,.2);box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .25s,background .25s}
+.pick:hover{box-shadow:inset 0 0 0 1px var(--line-gold)}
+.pick img{width:44px;height:44px;border-radius:9px;object-fit:cover}
+.pick .nm{display:flex;flex-direction:column;font-size:14.5px;line-height:1.25;min-width:0}
+.pick .nm .mono{font-size:11.5px}
+.pick .plus{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--gold-hi);font:500 17px/1 var(--f-mono)}
+.pick.flash{animation:flash .6s var(--ease)}
+@keyframes flash{30%{background:rgba(240,221,180,.18)}}
+.summary{padding:22px;display:flex;flex-direction:column;gap:14px;position:sticky;top:90px;min-width:0}
+.lines{display:flex;flex-direction:column;gap:10px;min-height:56px}
+.line{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center}
+.line img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+.line .nm{font-size:14.5px;line-height:1.25;display:flex;flex-direction:column}
+.line .nm .mono{font-size:11.5px}
+.qty{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--f-mono)}
+.qty button{width:26px;height:26px;border-radius:50%;border:0;cursor:pointer;background:rgba(0,0,0,.3);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--fg);font:500 15px/1 var(--f-mono)}
+.empty{color:var(--dim);font-size:14.5px}
+.totals{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding-top:14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+.totals span{color:var(--muted);font-size:15px}
+.totals b{font:500 14px var(--f-mono);text-align:right}
+.totals .disc{color:var(--gold-hi)}
+.totals .big{font:400 32px/1.1 var(--f-display);color:var(--fg)}
+.shipbar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.shipbar i{display:block;height:100%;width:var(--v,0%);border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--gold-hi));transition:width .6s var(--ease)}
+.hint{font:400 12.5px/1.5 var(--f-mono);color:var(--dim)}
+.hint.ok{color:var(--gold-hi)}
+@media (max-width:920px){.builder{grid-template-columns:1fr}.summary{position:static}.tiers{grid-template-columns:1fr}.tier b{font-size:48px}}
+@media (max-width:560px){.picker-list{grid-template-columns:1fr;max-height:380px}}
+
+/* ---------- afsluiter ---------- */
+.cta{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:16px}
+.cta-left{padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:320px;overflow:hidden}
+.cta-left .big-n{position:absolute;right:-18px;bottom:-70px;font:italic 400 300px/1 var(--f-display);color:rgba(240,221,180,.06);pointer-events:none}
+.cta-left p{color:var(--muted);max-width:30ch}
+.cta-card{position:relative;overflow:hidden;border-radius:24px;padding:clamp(24px,4vw,46px);background:linear-gradient(135deg,var(--gold-hi),var(--gold) 58%,var(--gold-mid));color:var(--on-gold);display:flex;flex-direction:column;gap:18px;box-shadow:inset 0 1px 0 rgba(255,250,235,.6),0 40px 110px -40px rgba(201,166,107,.7)}
+.cta-card .mono{color:rgba(43,34,19,.7)}
+.cta-card h2{color:var(--on-gold)}
+.cta-card h2 em{background:none;color:var(--bronze);-webkit-text-fill-color:currentColor}
+.cta-card p{color:rgba(43,34,19,.78);max-width:52ch}
+.cta-preview{font-family:var(--f-script);font-size:clamp(46px,6vw,76px);line-height:1.15;color:var(--bronze);min-height:1.2em;text-shadow:0 1px 0 rgba(255,245,220,.6);overflow-wrap:anywhere}
+.cta-form{display:flex;gap:8px;padding:6px;border-radius:999px;background:rgba(255,250,240,.5);box-shadow:inset 0 0 0 1px rgba(43,34,19,.18)}
+.cta-form:focus-within{box-shadow:inset 0 0 0 1px rgba(43,34,19,.5)}
+.cta-form label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.cta-form input{flex:1;min-width:0;border:0;background:transparent;padding:0 16px;font:500 17px var(--f-body);color:var(--on-gold);outline:0}
+.cta-form input::placeholder{color:rgba(43,34,19,.5)}
+.cta-form .btn{background:var(--night);color:var(--cream);box-shadow:none}
+@media (max-width:860px){.cta{grid-template-columns:1fr}.cta-left{min-height:0}}
+@media (max-width:480px){.cta-form{flex-direction:column;border-radius:18px}.cta-form input{height:48px}}
+
+/* ---------- footer ---------- */
+footer{padding-block:64px max(40px,env(safe-area-inset-bottom,0px));background:rgba(12,11,9,.86);box-shadow:0 -1px 0 var(--line)}
+.foot{display:grid;grid-template-columns:1.4fr repeat(3,minmax(0,1fr));gap:32px}
+.foot h4{font:500 12px var(--f-mono);color:var(--dim);margin:0 0 14px;font-weight:500}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px}
+.foot a{color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--fg)}
+.foot li{color:var(--muted)}
+.foot .about{display:flex;flex-direction:column;gap:14px;color:var(--muted);max-width:34ch}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:48px;padding-top:20px;box-shadow:0 -1px 0 var(--line)}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}.foot .about{grid-column:1/-1}}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:10px 10px 10px 18px;border-radius:999px;background:var(--glass-solid);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line-gold),0 20px 50px -20px var(--shade);font-size:15px;max-width:calc(100vw - 32px);animation:toastIn .4s var(--ease)}
+@keyframes toastIn{from{transform:translate(-50%,16px)}}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+
+<div class="bg" aria-hidden="true">
+  <canvas id="silk"></canvas>
+  <canvas id="silk-glow"></canvas>
+  <div class="atmo"></div>
+  <div class="grain"></div>
+</div>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="NOMI Jewelry, naar boven">
+      <svg viewBox="0 0 30 30" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0DDB4"/><stop offset=".5" stop-color="#C9A66B"/><stop offset="1" stop-color="#86662B"/></linearGradient></defs><rect x="1" y="1" width="28" height="28" rx="8.5" fill="url(#gm)"/><text x="15" y="21" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="17" font-weight="500" fill="#2B2213">N</text></svg>
+      <span class="word">NOMI<small>jewelry</small></span>
+    </a>
+    <nav class="links" aria-label="Hoofdmenu">
+      <a href="#collectie">Collectie</a>
+      <a href="#atelier">Personaliseren</a>
+      <a href="#setkorting">Setkorting</a>
+      <a href="#cadeaus">Cadeaus</a>
+    </nav>
+    <div class="nav-r">
+      <span class="pill nav-pill"><i class="dot"></i>gratis verzending vanaf €40</span>
+      <a class="btn btn-gold btn-sm" href="https://zm0umb-xr.myshopify.com/collections/all" target="_blank" rel="noopener">Naar de winkel</a>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="pill"><i class="dot"></i>14k verguld · nikkelvrij · 20 sieraden</span>
+        <h1>Een naam. Een datum.<br><em>Een herinnering.</em></h1>
+        <p class="lead">Persoonlijke damessieraden met jouw naam, initiaal of een datum die iets voor je betekent. Met een laser gegraveerd en binnen 2–4 werkdagen verzonden.</p>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="#atelier" id="hero-design">Ontwerp de jouwe</a>
+          <a class="btn btn-ghost" href="#collectie"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg>Bekijk de collectie</a>
+        </div>
+        <p class="micro">gratis verzending vanaf €40 / setkorting tot 20% / cadeauklaar verpakt</p>
+      </div>
+
+      <div class="console glass blur rv" id="atelier" aria-label="Gravure-atelier">
+        <div class="con-head">
+          <span class="mono">gravure-atelier</span>
+          <span class="mono" id="con-path">naamketting / 1 tekst</span>
+          <span class="live"><i class="dot"></i>live</span>
+        </div>
+        <div class="modes" id="modes" role="group" aria-label="Kies een sieraad"></div>
+        <div class="field">
+          <label for="engrave" id="engrave-label">jouw naam</label>
+          <input id="engrave" type="text" autocomplete="off" spellcheck="false" maxlength="12" value="Sophie">
+          <span class="count" id="count">6/12</span>
+        </div>
+        <div class="stage">
+          <span class="mono tag" id="stage-tag">voorbeeld · ware grootte verschilt</span>
+          <span class="mono tag r">14k</span>
+          <svg id="preview" viewBox="0 0 440 236" role="img" aria-label="Voorbeeld van je gravure">
+            <defs>
+              <linearGradient id="gg" x1="0" y1="0" x2="1" y2=".35" spreadMethod="reflect">
+                <stop offset="0" stop-color="#7d5c2a"/>
+                <stop offset=".28" stop-color="#C9A66B"/>
+                <stop offset=".5" stop-color="#FBEBC6"/>
+                <stop offset=".72" stop-color="#C9A66B"/>
+                <stop offset="1" stop-color="#8a6a32"/>
+                <animateTransform attributeName="gradientTransform" type="translate" values="-0.6 0;0.6 0;-0.6 0" dur="7s" repeatCount="indefinite"/>
+              </linearGradient>
+              <radialGradient id="gcoin" cx=".38" cy=".32" r=".8">
+                <stop offset="0" stop-color="#FBEBC6"/>
+                <stop offset=".45" stop-color="#D9B77A"/>
+                <stop offset=".85" stop-color="#A7843F"/>
+                <stop offset="1" stop-color="#7d5c2a"/>
+              </radialGradient>
+              <filter id="soft" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000" flood-opacity=".55"/></filter>
+            </defs>
+            <g id="pv"></g>
+          </svg>
+        </div>
+        <svg class="flow" viewBox="0 0 440 52" aria-hidden="true">
+          <path id="flowpath" d="M30 18 C 80 18, 100 18, 150 18 S 240 18, 290 18 S 370 18, 410 18" fill="none" stroke="rgba(247,244,239,.17)" stroke-width="1" stroke-dasharray="3 4"/>
+          <g><circle class="node" cx="30" cy="18" r="9"/><circle class="core" cx="30" cy="18" r="4" style="animation-delay:0s"/><text x="30" y="46" text-anchor="middle">jouw tekst</text></g>
+          <g><circle class="node" cx="150" cy="18" r="9"/><circle class="core" cx="150" cy="18" r="4" style="animation-delay:1s"/><text x="150" y="46" text-anchor="middle">laser</text></g>
+          <g><circle class="node" cx="290" cy="18" r="9"/><circle class="core" cx="290" cy="18" r="4" style="animation-delay:2s"/><text x="290" y="46" text-anchor="middle">doosje</text></g>
+          <g><circle class="node" cx="410" cy="18" r="9"/><circle class="core" cx="410" cy="18" r="4" style="animation-delay:3s"/><text x="410" y="46" text-anchor="middle">PostNL</text></g>
+          <circle r="3" fill="#F0DDB4"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#flowpath"/></animateMotion></circle>
+        </svg>
+        <dl class="specs" id="specs"></dl>
+        <a class="btn btn-gold btn-block" id="con-link" href="https://zm0umb-xr.myshopify.com/products/naamketting" target="_blank" rel="noopener">Personaliseer de Naamketting <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VITRINES -->
+  <section class="strip" aria-label="Vitrines">
+    <div class="wrap">
+      <div class="strip-head"><span class="mono">de vitrines</span><span class="mono">20 sieraden + cadeaubon</span></div>
+      <div class="cats">
+        <a class="cat" href="https://zm0umb-xr.myshopify.com/collections/kettingen" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 7c3 15 9 20 14 20s11-5 14-20"/><path d="M20 27v2"/><circle cx="20" cy="32.5" r="3.2"/></svg><b>Kettingen</b><span class="mono">8 ontwerpen</span></a>
+        <a class="cat" href="https://zm0umb-xr.myshopify.com/collections/armbanden" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="14" ry="8"/><circle cx="20" cy="30.5" r="2.6"/><path d="M20 28v-.5"/></svg><b>Armbanden</b><span class="mono">4 ontwerpen</span></a>
+        <a class="cat" href="https://zm0umb-xr.myshopify.com/collections/ringen" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="24" r="10"/><circle cx="20" cy="24" r="7.5"/><path d="m16.5 11 3.5-4 3.5 4-3.5 3z"/></svg><b>Ringen</b><span class="mono">3 ontwerpen</span></a>
+        <a class="cat" href="https://zm0umb-xr.myshopify.com/collections/oorbellen" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="13" cy="19" r="4"/><circle cx="27" cy="19" r="4"/><path d="M13 23v5M27 23v5"/></svg><b>Oorbellen</b><span class="mono">2 ontwerpen</span></a>
+        <a class="cat" href="https://zm0umb-xr.myshopify.com/collections/sets" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 6c3 12 7 16 11 16s8-4 11-16"/><circle cx="16" cy="25" r="2.4"/><circle cx="29" cy="27" r="6"/></svg><b>Sets</b><span class="mono">3 ontwerpen</span></a>
+        <a class="cat" href="https://zm0umb-xr.myshopify.com/collections/cadeaubonnen" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="15" width="26" height="18" rx="2"/><path d="M7 21h26M20 15v18M20 15c-3-6-9-6-8-2 1 3 8 2 8 2zM20 15c3-6 9-6 8-2-1 3-8 2-8 2z"/></svg><b>Cadeaubon</b><span class="mono">€10 – €100</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement" aria-label="Het idee">
+    <div class="wrap head rv" style="margin-bottom:0">
+      <span class="pill"><i class="dot"></i>het idee</span>
+      <h2>Elk sieraad begint <em>leeg</em>.</h2>
+      <p>Een ketting, een ring of een armband is nog van niemand. Met jouw naam, initiaal, datum of een plek wordt het van iemand. Die tekst graveren we met een laser, strak en blijvend.</p>
+    </div>
+  </section>
+
+  <!-- MORPH -->
+  <section class="morph" id="voor-jou" aria-label="Gemaakt voor jou">
+    <div class="morph-stage" id="morph-stage">
+      <div class="morph-intro">
+        <span class="mono">van basis naar sieraad</span>
+        <h2>Een klein plaatje <em>goud</em>.</h2>
+      </div>
+      <div class="tile" id="tile">
+        <span class="tile-n" aria-hidden="true">N</span>
+        <div class="tile-field">
+          <span class="tf tl">14k verguld</span>
+          <span class="tf tr">rvs · nikkelvrij</span>
+          <span class="tf bl">met een laser gegraveerd</span>
+          <span class="tf br">2–4 werkdagen</span>
+          <h2>Gemaakt<br><em>voor jou.</em></h2>
+        </div>
+        <div class="tile-medal" aria-hidden="true">
+          <span class="medal-ring"></span>
+          <span class="medal-name" id="medal-name">Sophie</span>
+        </div>
+      </div>
+      <p class="mono morph-cap">scroll verder</p>
+      <div class="morph-after" id="morph-after">
+        <p><span id="medal-label">Sophie</span>, gegraveerd op een rond muntje. Zo wordt een sieraad van jou.</p>
+        <a class="btn btn-ghost" href="#collectie">Kies je sieraad</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIE -->
+  <section class="block veil" id="collectie" aria-label="Collectie">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="pill"><i class="dot"></i>de collectie</span>
+        <h2>Kies je <em>basis</em>.</h2>
+        <p>Elk sieraad is 14k verguld roestvrij staal en nikkelvrij. Tik op een sieraad voor de details, de maten en wat je kunt laten graveren.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter op soort"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="block" aria-label="Details">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="pill"><i class="dot"></i>de details</span>
+        <h2><em>Klein</em> in alles wat telt.</h2>
+        <p>Je draagt het elke dag. Daarom kloppen ook de dingen die je niet meteen ziet: het materiaal, de gravure, de verpakking en de levering.</p>
+      </div>
+      <div class="bento">
+        <article class="glass bx s3 rv">
+          <h3>14k verguld, nikkelvrij</h3>
+          <p>Een kern van roestvrij staal met een laagje 14-karaats goud. Hard en krasvast, en fijn voor een gevoelige huid.</p>
+          <div class="viz layers" aria-label="Opbouw van het materiaal">
+            <div class="ly"><span class="bar gold"></span><span class="mono"><b>14k</b> goudlaag</span></div>
+            <div class="ly"><span class="bar steel"></span><span class="mono">roestvrij staal (RVS)</span></div>
+            <div class="ly"><span class="bar free"></span><span class="mono">nikkel: 0</span></div>
+          </div>
+        </article>
+        <article class="glass bx s3 rv">
+          <h3>Met een laser gegraveerd</h3>
+          <p>Strak en blijvend. Van één initiaal tot de coördinaten van jouw plek, in 40 tekens.</p>
+          <div class="viz engrave">
+            <div class="plate"><span class="et" id="eng-text">52.3676° N, 4.9041° E</span><i class="laser" aria-hidden="true"></i></div>
+            <span class="mono" id="eng-meta">coördinaten-armband · max. 40 tekens</span>
+          </div>
+        </article>
+        <article class="glass bx s2 rv">
+          <h3>Binnen 2–4 werkdagen</h3>
+          <p>We maken je sieraad speciaal voor jou en versturen het met PostNL.</p>
+          <div class="viz ship">
+            <ol><li>besteld</li><li>gegraveerd</li><li>verpakt</li><li>PostNL</li></ol>
+            <div class="track"><i></i></div>
+            <span class="mono">verzonden binnen 2–4 werkdagen</span>
+          </div>
+        </article>
+        <article class="glass bx s2 rv">
+          <h3>Gratis verzending vanaf €40</h3>
+          <p>In Nederland. Met twee sieraden zit je er bijna altijd boven.</p>
+          <div class="viz meter" aria-label="Rekenvoorbeeld gratis verzending">
+            <div class="mrow"><span>Naamketting</span><b>€32,95</b><span class="mbar"><i style="--v:54.9%"></i><span class="tick"></span></span><span class="mnote">nog €7,05 tot gratis verzending</span></div>
+            <div class="mrow"><span>+ Symbool-oorstekers, −10%</span><b>€52,11</b><span class="mbar"><i style="--v:86.9%"></i><span class="tick"></span></span><span class="mnote ok">setkorting €5,79 · gratis verzending</span></div>
+          </div>
+        </article>
+        <article class="glass bx s2 rv">
+          <h3>Ringmaat 16 tot 19 mm</h3>
+          <p>Elke ring komt in vier maten. Twijfel je? Meet een ring die je al hebt.</p>
+          <div class="viz ringsize">
+            <svg viewBox="0 0 132 132" aria-hidden="true">
+              <circle cx="66" cy="66" r="57" fill="none" stroke="rgba(247,244,239,.12)" stroke-dasharray="2 4"/>
+              <circle cx="66" cy="66" r="48" fill="none" stroke="rgba(247,244,239,.12)" stroke-dasharray="2 4"/>
+              <circle id="rs-c" cx="66" cy="66" r="51" fill="none" stroke="url(#gg)" stroke-width="7"/>
+              <text id="rs-t" x="66" y="74" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="26" fill="#F0DDB4">17</text>
+            </svg>
+            <div class="rs-side">
+              <div class="rs-btns" id="rs-btns" role="group" aria-label="Kies een ringmaat"></div>
+              <span class="mono" id="rs-m">binnendiameter 17 mm · omtrek 53,4 mm</span>
+            </div>
+          </div>
+        </article>
+        <article class="glass bx s6 rv">
+          <div class="gift">
+            <img src="img/luxe-cadeauset-1.webp" alt="Sieradendoosje met een hartjesketting en oorstekers, klaar om te geven" loading="lazy" width="720" height="658">
+            <div class="gift-copy">
+              <span class="mono">cadeauklaar</span>
+              <h3 style="font-size:clamp(28px,3vw,38px)">Open het. <span class="gold-text">En het is van jou.</span></h3>
+              <p>Je sieraad in een crèmekleurig sieradendoosje met strik, met een kaartje met jouw boodschap. Voor €3,95 extra.</p>
+              <ul>
+                <li>vaste ontwerpen: 14 dagen bedenktijd</li>
+                <li>gepersonaliseerd: uitgesloten van retour, dus check je tekst goed</li>
+                <li>de Luxe Cadeauset zit al in een doosje</li>
+              </ul>
+              <a class="btn btn-ghost" href="https://zm0umb-xr.myshopify.com/collections/cadeaus" target="_blank" rel="noopener">Bekijk alle cadeaus</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GELEGENHEDEN -->
+  <section class="block veil" id="cadeaus" aria-label="Cadeaus per gelegenheid">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="pill"><i class="dot"></i>cadeau geven</span>
+        <h2>Voor <em>wie</em> is het?</h2>
+        <p>Kies de gelegenheid. Je ziet meteen welke sieraden erbij passen, met de prijs erbij.</p>
+      </div>
+      <div class="occ">
+        <div class="occ-tabs" id="occ-tabs" role="tablist" aria-label="Gelegenheden"></div>
+        <div class="glass occ-panel" id="occ-panel" role="tabpanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETALLEN -->
+  <section class="block" aria-label="Keuzes in getallen">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="pill"><i class="dot"></i>keuzes</span>
+        <h2>Alles wat je kunt kiezen, <em>in getallen</em>.</h2>
+        <p>Een sterrenbeeld, een geboortesteen, een symbool of een rij initialen. Zoveel ruimte heb je.</p>
+      </div>
+      <div class="stats rv">
+        <div class="stat"><b data-to="12">12</b><strong>sterrenbeelden</strong><span>op de sterrenbeeld-ring en -armband</span></div>
+        <div class="stat"><b data-to="12">12</b><strong>geboortestenen</strong><span>één kleur per maand, geslepen zirkonia</span></div>
+        <div class="stat"><b data-to="3">3</b><strong>symbolen</strong><span>maantje, hartje of veertje</span></div>
+        <div class="stat"><b data-to="5">5</b><strong>initialen</strong><span>op de familieketting</span></div>
+        <div class="stat"><b data-to="40">40</b><strong>tekens</strong><span>op de coördinaten-armband</span></div>
+        <div class="stat"><b data-to="14">14</b><strong>karaat</strong><span>het goudlaagje op elk sieraad</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETKORTING -->
+  <section class="block veil" id="setkorting" aria-label="Setkorting">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="pill"><i class="dot"></i>setkorting</span>
+        <h2>Combineer en <em>bespaar</em>.</h2>
+        <p>Kies je meerdere sieraden, dan krijg je automatisch korting in je winkelmandje. Je hebt geen code nodig.</p>
+      </div>
+      <div class="tiers">
+        <div class="glass tier" data-min="2"><span class="mono">2 sieraden</span><b>10<small>%</small></b><p>Een ketting met bijpassende oorbellen.</p></div>
+        <div class="glass tier" data-min="3"><span class="mono">3 sieraden</span><b>15<small>%</small></b><p>Een ketting, een armband en een ring.</p></div>
+        <div class="glass tier" data-min="4"><span class="mono">4 of meer</span><b>20<small>%</small></b><p>Een complete set, of cadeaus voor meerdere mensen.</p></div>
+      </div>
+      <div class="builder">
+        <div class="glass picker">
+          <div class="occ-top"><span class="mono">stel je set samen · tik om toe te voegen</span></div>
+          <div class="picker-list" id="picker"></div>
+        </div>
+        <aside class="glass summary" aria-label="Jouw set">
+          <div class="occ-top"><span class="mono">jouw set</span><span class="mono" id="set-count">2 sieraden</span></div>
+          <div class="lines" id="lines"></div>
+          <div class="totals" id="totals"></div>
+          <div class="shipbar" aria-hidden="true"><i id="shipbar"></i></div>
+          <p class="hint" id="ship-hint"></p>
+          <p class="hint" id="tier-hint"></p>
+          <a class="btn btn-gold btn-block" href="https://zm0umb-xr.myshopify.com/collections/all" target="_blank" rel="noopener">Naar de winkel <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+          <p class="hint">Indicatie. Je personaliseert elk sieraad in de winkel; de setkorting wordt daar automatisch verrekend.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFSLUITER -->
+  <section class="block" aria-label="Begin met jouw naam">
+    <div class="wrap cta">
+      <div class="glass cta-left rv">
+        <span class="big-n" aria-hidden="true">N</span>
+        <a class="brand" href="#top"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8.5" fill="url(#gm)"/><text x="15" y="21" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="17" font-weight="500" fill="#2B2213">N</text></svg><span class="word">NOMI</span></a>
+        <p>Persoonlijke damessieraden, 14k verguld en nikkelvrij. Voor jezelf, of om te geven.</p>
+        <span class="mono">gratis verzending vanaf €40 · setkorting tot 20%</span>
+      </div>
+      <div class="cta-card rv">
+        <span class="mono">de naamketting · €32,95</span>
+        <h2>Wiens naam <em>draag jij?</em></h2>
+        <p>Typ een naam en zie hem meteen in doorlopende letters. Maximaal 12 tekens.</p>
+        <div class="cta-preview" id="cta-preview" aria-live="polite">Sophie</div>
+        <form class="cta-form" id="cta-form">
+          <label for="cta-name">Naam voor de naamketting</label>
+          <input id="cta-name" type="text" maxlength="12" autocomplete="off" spellcheck="false" placeholder="Typ een naam" value="Sophie">
+          <a class="btn" id="cta-link" href="https://zm0umb-xr.myshopify.com/products/naamketting" target="_blank" rel="noopener">Maak de naamketting</a>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a class="brand" href="#top"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8.5" fill="url(#gm)"/><text x="15" y="21" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="17" font-weight="500" fill="#2B2213">N</text></svg><span class="word">NOMI<small>jewelry</small></span></a>
+        <p>Een naam. Een datum. Een herinnering. Sieraden die speciaal voor jou gemaakt worden, voor jezelf of om te geven.</p>
+      </div>
+      <div>
+        <h4>shop</h4>
+        <ul>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/kettingen" target="_blank" rel="noopener">Kettingen</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/armbanden" target="_blank" rel="noopener">Armbanden</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/ringen" target="_blank" rel="noopener">Ringen</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/oorbellen" target="_blank" rel="noopener">Oorbellen</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/sets" target="_blank" rel="noopener">Sets</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/cadeaubonnen" target="_blank" rel="noopener">Cadeaubonnen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>cadeaus</h4>
+        <ul>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/cadeau-voor-moeder" target="_blank" rel="noopener">Voor je moeder</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/cadeau-geboorte" target="_blank" rel="noopener">Geboorte &amp; kraamcadeau</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/cadeau-verjaardag" target="_blank" rel="noopener">Verjaardag</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/cadeau-vriendschap" target="_blank" rel="noopener">Voor je beste vriendin</a></li>
+          <li><a href="https://zm0umb-xr.myshopify.com/collections/cadeau-liefde" target="_blank" rel="noopener">Voor je geliefde</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>service</h4>
+        <ul>
+          <li>Verzonden binnen 2–4 werkdagen met PostNL</li>
+          <li>Gratis verzending in NL vanaf €40</li>
+          <li>Vaste ontwerpen: 14 dagen bedenktijd</li>
+          <li>Ringmaten 16, 17, 18 en 19 mm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span class="mono">© 2026 NOMI Jewelry · afrekenen gaat via de NOMI-webshop</span>
+      <span class="mono">14k verguld · RVS · nikkelvrij</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="qv" aria-labelledby="qv-title">
+  <div class="qv">
+    <button class="qv-close" id="qv-close" type="button" aria-label="Sluiten"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3.5 3.5 9 9m0-9-9 9"/></svg></button>
+    <div class="qv-media">
+      <img id="qv-img" src="img/naamketting-1.webp" alt="">
+      <div class="qv-thumbs" id="qv-thumbs"></div>
+    </div>
+    <div class="qv-body">
+      <span class="mono" id="qv-type">kettingen</span>
+      <h2 id="qv-title">Naamketting</h2>
+      <span class="qv-price" id="qv-price">€32,95</span>
+      <p id="qv-desc"></p>
+      <div class="tags" id="qv-tags"></div>
+      <dl class="qv-specs" id="qv-specs"></dl>
+      <div class="qv-actions">
+        <a class="btn btn-gold" id="qv-link" href="#" target="_blank" rel="noopener">Personaliseer in de winkel <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+        <button class="btn btn-ghost" id="qv-add" type="button">Zet in je set</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+(() => {
+  'use strict';
+  const STORE = 'https://zm0umb-xr.myshopify.com';
+  const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const eur = n => '€' + n.toFixed(2).replace('.', ',');
+  const purl = h => `${STORE}/products/${h}`;
+  const curl = h => `${STORE}/collections/${h}`;
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const store = (() => { try { return window.localStorage; } catch (e) { return null; } })();
+  const save = (k, v) => { try { store && store.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const load = (k, d) => { try { const v = store && store.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  const ss = (a, b, v) => { const u = Math.min(1, Math.max(0, (v - a) / (b - a))); return u * u * (3 - 2 * u); };
+
+  /* ---------------- producten (uit de NOMI-winkel) ---------------- */
+  const NECK = '40 cm + 5 cm verlengketting';
+  const RING = 'Maten 16, 17, 18 en 19 mm';
+  const P = [
+    {h:'naamketting',t:'Naamketting',ty:'Kettingen',p:32.95,pers:'Eén naam tot 12 tekens',size:NECK,occ:['geboorte','moeder'],d:'Jouw naam, of die van iemand die je dierbaar is, sierlijk uitgeschreven in één doorlopende letter.'},
+    {h:'initiaalketting',t:'Initiaalketting',ty:'Kettingen',p:29.95,pers:'Eén letter',size:NECK,occ:['geboorte','liefde','vriendschap'],d:'Een fijne ketting met één initiaal-hanger. Minimalistisch, tijdloos en helemaal van jou.'},
+    {h:'twee-initialen-ketting',t:'Twee-initialen ketting',ty:'Kettingen',p:31.95,pers:'Twee initialen, bijvoorbeeld A & M',size:NECK,occ:['liefde'],d:'Twee kleine initiaal-hangers naast elkaar: die van jou en van iemand die je dierbaar is.'},
+    {h:'tekstketting',t:'Tekstketting',ty:'Kettingen',p:29.95,pers:'Eén woord tot 12 tekens',size:NECK,occ:['liefde'],d:'Een rond muntje met jouw woord. Een naam, een plek, een motto of een woord dat alleen jullie begrijpen.'},
+    {h:'geboortedatum-ketting',t:'Geboortedatum-ketting',ty:'Kettingen',p:30.95,pers:'Eén datum',size:NECK,occ:['geboorte','liefde','moeder'],d:'Een hartje met jouw datum. Een geboortedag, een trouwdag of het moment dat alles begon.'},
+    {h:'symboolketting',t:'Symboolketting',ty:'Kettingen',p:26.95,pers:'Maantje, hartje of veertje',size:NECK,occ:['verjaardag'],d:'Een klein symbool naar keuze. Drie tekens, elk met een eigen betekenis.'},
+    {h:'moederketting',t:'Moederketting',ty:'Kettingen',p:33.95,pers:'Tot 4 initialen van je kinderen',size:NECK,occ:['moeder'],d:'Een klavertje vier, het symbool van geluk, met de initialen van je kinderen.'},
+    {h:'familieketting',t:'Familieketting',ty:'Kettingen',p:34.95,pers:'Tot 5 initialen',size:NECK,occ:['geboorte','moeder'],d:'Een hanger van figuurtjes die samen je gezin vormen, met de initialen van iedereen die bij je hoort.'},
+    {h:'geboortesteen-armband',t:'Geboortesteen-armband',ty:'Armbanden',p:27.95,pers:'Eén van de 12 geboortemaanden',size:'Geslepen zirkonia steen',occ:['geboorte','moeder','verjaardag'],d:'Een dun armbandje met één kleine steen in de kleur van jouw geboortemaand.'},
+    {h:'sterrenbeeld-armband',t:'Sterrenbeeld-armband',ty:'Armbanden',p:24.95,pers:'Eén van de 12 sterrenbeelden',size:'Rond muntje, fijn om te stapelen',occ:['verjaardag'],d:'Een dun kettingarmbandje met een rond muntje waarop jouw sterrenbeeld staat.'},
+    {h:'coordinaten-armband',t:'Coördinaten-armband',ty:'Armbanden',p:28.95,pers:'Coördinaten of plaatsnaam tot 40 tekens',size:'Plat staafje',occ:['liefde','vriendschap'],d:'De coördinaten van een plek die je nooit wilt vergeten. Waar je opgroeide, of waar jullie elkaar ontmoetten.'},
+    {h:'symboolarmband',t:'Symboolarmband',ty:'Armbanden',p:23.95,pers:'Maantje, hartje of veertje',size:'Fijn om te stapelen',occ:['vriendschap'],d:'Een dun armbandje met een klein symbool naar keuze. Minimalistisch, met precies genoeg betekenis.'},
+    {h:'naamring',t:'Naamring',ty:'Ringen',p:28.95,pers:'Eén naam tot 12 tekens',size:RING,occ:['liefde'],d:'Een platte bandring met een naam aan de buitenkant gegraveerd. Subtiel, om je vinger.'},
+    {h:'geboortedatum-ring',t:'Geboortedatum-ring',ty:'Ringen',p:27.95,pers:'Eén datum',size:RING,occ:['geboorte'],d:'Een dunne, platte ring met een datum die voor jou alles betekent. Perfect om te stapelen.'},
+    {h:'sterrenbeeld-ring',t:'Sterrenbeeld-ring',ty:'Ringen',p:26.95,pers:'Eén van de 12 sterrenbeelden',size:RING,occ:['verjaardag'],d:'Een dunne ring met een rond plaatje waarop jouw sterrenbeeld is gegraveerd.'},
+    {h:'initiaal-oorstekers',t:'Initiaal-oorstekers',ty:'Oorbellen',p:25.95,pers:'Eén letter, op beide oorstekers',size:'RVS-achtersluitingen',occ:['verjaardag'],d:'Twee kleine oorstekers met jouw initiaal. Onopvallend genoeg om altijd in te laten.'},
+    {h:'symbool-oorstekers',t:'Symbool-oorstekers',ty:'Oorbellen',p:24.95,pers:'Maantje, hartje of veertje',size:'RVS-achtersluitingen',occ:['vriendschap'],d:'Kleine oorstekers met een maantje, een hartje of een veertje. Subtiel genoeg voor elke dag.'},
+    {h:'nomi-setje-ketting-armband',img:'nomi-setje',t:'Nomi Setje',ty:'Sets',p:39.95,pers:'Eén letter en één sterrenbeeld',size:NECK,occ:['vriendschap'],d:'Een initiaalketting en een armbandje met een sterrenbeeld-muntje, op elkaar afgestemd.'},
+    {h:'vriendschapssetje',t:'Vriendschapssetje',ty:'Sets',p:32.95,fixed:1,pers:'Vast ontwerp, samen één hart',size:NECK,occ:['vriendschap'],d:'Twee kettingen die samen één hart vormen. Eén voor jou, één voor iemand die je nooit kwijt wilt.'},
+    {h:'luxe-cadeauset',t:'Luxe Cadeauset',ty:'Sets',p:39.95,fixed:1,pers:'Vast ontwerp, inclusief sieradendoosje',size:NECK,occ:['moeder','verjaardag'],d:'Een fijne ketting met een hartje en bijpassende oorstekers, samen in een sieradendoosje.'}
+  ];
+  const byH = h => P.find(p => p.h === h);
+  const img = (p, n) => `img/${p.img || p.h}-${n}.webp`;
+  const OCC = [
+    {k:'moeder',t:'Voor je moeder',c:'cadeau-voor-moeder'},
+    {k:'geboorte',t:'Geboorte & kraamcadeau',c:'cadeau-geboorte'},
+    {k:'verjaardag',t:'Verjaardag',c:'cadeau-verjaardag'},
+    {k:'vriendschap',t:'Voor je beste vriendin',c:'cadeau-vriendschap'},
+    {k:'liefde',t:'Voor je geliefde',c:'cadeau-liefde'},
+    {k:'bon',t:'Cadeaubon',c:'cadeaubonnen'}
+  ];
+  const OCC_NAME = Object.fromEntries(OCC.map(o => [o.k, o.t.toLowerCase()]));
+
+  /* ---------------- gouden lichtdraden ---------------- */
+  function silk() {
+    const c = $('#silk'), g = $('#silk-glow');
+    if (!c.getContext) return;
+    const x = c.getContext('2d'), gx = g.getContext('2d');
+    const night = getComputedStyle(document.documentElement).getPropertyValue('--night').trim() || '#13110e';
+    const small = window.innerWidth < 720;
+    const N = small ? 46 : 74, S = small ? 46 : 62;
+    const st = Array.from({length: N}, (_, i) => ({th: i / N * Math.PI * 2 + Math.random() * .25, r: .4 + Math.random() * .6, ph: Math.random() * 6.283, a: .55 + Math.random() * .45}));
+    // [p0x,p0y, p1x,p1y, p2x,p2y, p3x,p3y, knoop, spreiding] als fractie van het scherm
+    const K = [
+      [1.15,-.10, .80,.30, .30,1.10, -.06,.70, .72,.30],
+      [-.15,.12, .40,-.05, .72,1.05, 1.15,.78, .62,.27],
+      [-.15,.55, .30,.12, .70,.98, 1.15,.42, .50,.22],
+      [-.10,1.10, .25,.38, .80,.78, 1.15,.04, .40,.28],
+      [1.12,1.05, .70,.50, .30,.98, -.12,.38, .55,.30]
+    ];
+    const cur = K[0].slice();
+    const pts = new Float32Array((S + 1) * 5);
+    let W = 0, H = 0, dpr = 1, t = Math.random() * 40, mx = 0, my = 0, tmx = 0, tmy = 0, last = 0;
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, small ? 1.25 : 1.5);
+      W = window.innerWidth; H = window.innerHeight;
+      c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
+      g.width = Math.max(1, Math.round(W / 4)); g.height = Math.max(1, Math.round(H / 4));
+    }
+    function target() {
+      const max = document.documentElement.scrollHeight - H;
+      const sp = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      const f = sp * (K.length - 1), i = Math.min(K.length - 2, Math.floor(f));
+      let u = f - i; u = u * u * (3 - 2 * u);
+      return K[i].map((v, j) => v + (K[i + 1][j] - v) * u);
+    }
+    function draw(now) {
+      const dt = Math.min(50, (now - last) || 16); last = now; t += dt * .001;
+      const tg = target();
+      for (let j = 0; j < cur.length; j++) cur[j] += (tg[j] - cur[j]) * (RM ? 1 : .05);
+      mx += (tmx - mx) * .04; my += (tmy - my) * .04;
+      const [a0,a1,b0,b1,c0,c1,d0,d1,uk,sm] = cur;
+      const P0x=a0*W, P0y=a1*H;
+      const P1x=(b0+Math.sin(t*.21)*.03+mx*.06)*W, P1y=(b1+Math.cos(t*.17)*.04+my*.06)*H;
+      const P2x=(c0+Math.sin(t*.13+1)*.04+mx*.1)*W, P2y=(c1+Math.cos(t*.19)*.03+my*.08)*H;
+      const P3x=d0*W, P3y=d1*H;
+      for (let s = 0; s <= S; s++) {
+        const u = s / S, v = 1 - u, o = s * 5;
+        const bx = v*v*v*P0x + 3*v*v*u*P1x + 3*v*u*u*P2x + u*u*u*P3x;
+        const by = v*v*v*P0y + 3*v*v*u*P1y + 3*v*u*u*P2y + u*u*u*P3y;
+        const dx = 3*v*v*(P1x-P0x) + 6*v*u*(P2x-P1x) + 3*u*u*(P3x-P2x);
+        const dy = 3*v*v*(P1y-P0y) + 6*v*u*(P2y-P1y) + 3*u*u*(P3y-P2y);
+        const l = Math.hypot(dx, dy) || 1;
+        pts[o]=bx; pts[o+1]=by; pts[o+2]=-dy/l; pts[o+3]=dx/l;
+        pts[o+4]=(.006 + sm*Math.pow(Math.abs(u-uk), 1.1)) * H;
+      }
+      x.setTransform(dpr,0,0,dpr,0,0);
+      x.globalCompositeOperation = 'source-over';
+      x.globalAlpha = 1;
+      x.fillStyle = night; x.fillRect(0,0,W,H);
+      const ks = Math.round(uk*S)*5, kx = pts[ks], ky = pts[ks+1];
+      const gr = x.createRadialGradient(kx,ky,0,kx,ky,Math.max(W,H)*.85);
+      gr.addColorStop(0,'rgba(255,246,226,0.95)');
+      gr.addColorStop(.1,'rgba(240,214,160,0.8)');
+      gr.addColorStop(.45,'rgba(201,166,107,0.5)');
+      gr.addColorStop(1,'rgba(217,184,168,0.2)');
+      x.globalCompositeOperation = 'lighter';
+      x.strokeStyle = gr; x.lineWidth = small ? .9 : 1;
+      const tw = 2.4, ts = t * .22;
+      for (let i = 0; i < N; i++) {
+        const q = st[i];
+        x.globalAlpha = (.05 + .2*(.5+.5*Math.cos(q.th + ts*1.3 + .6))) * q.a;
+        x.beginPath();
+        for (let s = 0; s <= S; s++) {
+          const o = s*5, u = s/S, sp = pts[o+4];
+          const off = sp*q.r*Math.sin(q.th + tw*u + ts) + H*.01*Math.sin(u*8 + t*.5 + q.ph)*(.4 + sp/H*3);
+          const px = pts[o] + pts[o+2]*off, py = pts[o+1] + pts[o+3]*off;
+          if (s) x.lineTo(px, py); else x.moveTo(px, py);
+        }
+        x.stroke();
+      }
+      x.globalAlpha = 1;
+      const kr = H*.3, kg = x.createRadialGradient(kx,ky,0,kx,ky,kr);
+      kg.addColorStop(0,'rgba(240,210,150,.3)'); kg.addColorStop(1,'rgba(240,210,150,0)');
+      x.fillStyle = kg; x.fillRect(kx-kr,ky-kr,kr*2,kr*2);
+      gx.clearRect(0,0,g.width,g.height); gx.drawImage(c,0,0,g.width,g.height);
+      if (!RM) requestAnimationFrame(draw);
+    }
+    size();
+    window.addEventListener('resize', () => { size(); if (RM) draw(16); });
+    window.addEventListener('pointermove', e => { tmx = e.clientX / W - .5; tmy = e.clientY / H - .5; }, {passive: true});
+    if (RM) { draw(16); window.addEventListener('scroll', () => requestAnimationFrame(draw), {passive: true}); }
+    else requestAnimationFrame(draw);
+  }
+
+  /* ---------------- navigatie ---------------- */
+  function nav() {
+    const bar = $('#prog');
+    let tick = false;
+    const upd = () => { tick = false; const max = document.documentElement.scrollHeight - innerHeight; bar.style.setProperty('--p', max > 0 ? (scrollY / max).toFixed(4) : 0); };
+    window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, {passive: true});
+    upd();
+    $('#hero-design').addEventListener('click', () => setTimeout(() => $('#engrave').focus({preventScroll: true}), 450));
+  }
+
+  /* ---------------- gravure-atelier ---------------- */
+  const MODES = {
+    naam:     {label:'Naamketting', h:'naamketting', max:12, v:'Sophie', field:'jouw naam', rows:[['lengte','40 cm + 5 cm']]},
+    initiaal: {label:'Initiaal', h:'initiaalketting', max:1, v:'S', field:'jouw letter', rows:[['lengte','40 cm + 5 cm']]},
+    woord:    {label:'Woord', h:'tekstketting', max:12, v:'Thuis', field:'jouw woord', rows:[['lengte','40 cm + 5 cm']]},
+    ring:     {label:'Naamring', h:'naamring', max:12, v:'Noor', field:'jouw naam', rows:[['maten','16 · 17 · 18 · 19 mm']]},
+    datum:    {label:'Datum', h:'geboortedatum-ketting', max:10, v:'24.10.2019', field:'jouw datum', rows:[['lengte','40 cm + 5 cm']]}
+  };
+  let mode = 'naam';
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent, text) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (text != null) n.textContent = text; if (parent) parent.appendChild(n); return n; };
+  const fit = (n, maxW, start, min) => { n.setAttribute('font-size', start); let w = 0; try { w = n.getComputedTextLength(); } catch (e) {} if (w > maxW) n.setAttribute('font-size', Math.max(min, start * maxW / w)); };
+  const chain = (g, d) => el('path', {d, fill:'none', stroke:'url(#gg)', 'stroke-width':1.4, 'stroke-dasharray':'2.6 1.6', 'stroke-linecap':'round'}, g);
+  const engraved = (g, attrs, text, maxW, start, min) => {
+    const hi = el('text', Object.assign({}, attrs, {fill:'rgba(255,244,214,.6)', transform:'translate(0 .9)'}), g, text);
+    const lo = el('text', Object.assign({}, attrs, {fill:'#5b4318'}), g, text);
+    fit(lo, maxW, start, min); hi.setAttribute('font-size', lo.getAttribute('font-size'));
+  };
+  function cleanVal(m, v) {
+    if (m === 'initiaal') return (v.match(/\p{L}/u) || [''])[0].toUpperCase();
+    if (m === 'datum') return v.replace(/[^0-9.\-\/ ]/g, '').slice(0, 10);
+    return v.slice(0, MODES[m].max);
+  }
+  function renderPreview() {
+    const g = $('#pv'); g.replaceChildren();
+    const m = MODES[mode];
+    const v = (m.v || '').trim() || ({naam:'Sophie', initiaal:'S', woord:'Thuis', ring:'Noor', datum:'24.10.2019'})[mode];
+    if (mode === 'naam') {
+      const tx = el('text', {x:220, y:156, 'text-anchor':'middle', 'font-family':"'Pinyon Script', cursive", fill:'url(#gg)', filter:'url(#soft)'}, g, v);
+      fit(tx, 330, 86, 30);
+      let b = {x:150, width:140, y:110, height:60}; try { b = tx.getBBox(); } catch (e) {}
+      const ay = b.y + b.height * .42, lx = b.x + 6, rx = b.x + b.width - 6;
+      chain(g, `M4 -4 C 70 70, ${lx - 70} ${ay - 40}, ${lx} ${ay}`);
+      chain(g, `M436 -4 C 370 70, ${rx + 70} ${ay - 40}, ${rx} ${ay}`);
+      g.appendChild(tx);
+    } else if (mode === 'initiaal' || mode === 'woord' || mode === 'datum') {
+      chain(g, 'M30 -4 Q 150 62 220 76'); chain(g, 'M410 -4 Q 290 62 220 76');
+      el('circle', {cx:220, cy:82, r:6, fill:'none', stroke:'url(#gg)', 'stroke-width':2}, g);
+      if (mode === 'initiaal') {
+        const tx = el('text', {x:220, y:196, 'text-anchor':'middle', 'font-family':"'Playfair Display', Georgia, serif", 'font-weight':500, 'font-size':116, fill:'url(#gg)', filter:'url(#soft)'}, g, v);
+        el('text', {x:220, y:196, 'text-anchor':'middle', 'font-family':"'Playfair Display', Georgia, serif", 'font-weight':500, 'font-size':116, fill:'none', stroke:'rgba(255,246,222,.35)', 'stroke-width':.8}, g, v);
+        void tx;
+      } else if (mode === 'woord') {
+        el('circle', {cx:220, cy:152, r:66, fill:'url(#gcoin)', filter:'url(#soft)'}, g);
+        el('circle', {cx:220, cy:152, r:58, fill:'none', stroke:'rgba(91,67,24,.35)', 'stroke-width':1}, g);
+        engraved(g, {x:220, y:158, 'text-anchor':'middle', 'font-family':"'Playfair Display', Georgia, serif", 'font-weight':600, 'letter-spacing':2}, v.toUpperCase(), 96, 22, 9);
+      } else {
+        el('path', {d:'M220 214 C 158 176, 146 126, 176 104 C 196 90, 214 100, 220 114 C 226 100, 244 90, 264 104 C 294 126, 282 176, 220 214 Z', fill:'url(#gcoin)', filter:'url(#soft)'}, g);
+        engraved(g, {x:220, y:150, 'text-anchor':'middle', 'font-family':"'Playfair Display', Georgia, serif", 'font-weight':500, 'letter-spacing':1}, v, 74, 17, 9);
+      }
+    } else if (mode === 'ring') {
+      el('ellipse', {cx:220, cy:112, rx:160, ry:62, fill:'none', stroke:'#6f5226', 'stroke-width':26}, g);
+      el('path', {d:'M60 112 A160 62 0 0 0 380 112', fill:'none', stroke:'url(#gg)', 'stroke-width':26, filter:'url(#soft)'}, g);
+      el('path', {d:'M60 100 A160 62 0 0 0 380 100', fill:'none', stroke:'rgba(255,246,222,.35)', 'stroke-width':1}, g);
+      el('path', {id:'ringpath', d:'M70 114 A150 60 0 0 0 370 114', fill:'none'}, g);
+      const mk = (fill, dy) => { const t = el('text', {'font-family':"'Playfair Display', Georgia, serif", 'font-style':'italic', 'font-size':Math.min(22, 220 / Math.max(4, v.length)), fill, 'letter-spacing':1.5, 'dominant-baseline':'central', transform:`translate(0 ${dy})`}, g); el('textPath', {href:'#ringpath', startOffset:'50%', 'text-anchor':'middle'}, t, v); };
+      mk('rgba(255,244,214,.55)', .9); mk('#4f3a14', 0);
+    }
+  }
+  function renderAtelier() {
+    const m = MODES[mode], p = byH(m.h);
+    const inp = $('#engrave');
+    inp.maxLength = m.max; inp.value = m.v; $('#engrave-label').textContent = m.field;
+    $('#count').textContent = `${[...m.v].length}/${m.max}`;
+    $('#con-path').textContent = `${m.h} / ${m.max === 1 ? '1 letter' : 'max ' + m.max + ' tekens'}`;
+    $$('#modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === mode));
+    const rows = [['sieraad', p.t], ['materiaal', '14k verguld RVS · nikkelvrij'], ...m.rows, ['gravure', mode === 'ring' || mode === 'woord' || mode === 'datum' ? 'laser, strak en blijvend' : 'doorlopende hanger'], ['prijs', eur(p.p)]];
+    if (mode === 'naam') rows[3] = ['letter', 'doorlopende schrijfletter'];
+    if (mode === 'initiaal') rows[3] = ['hanger', 'één initiaal'];
+    $('#specs').innerHTML = rows.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
+    const link = $('#con-link'); link.href = purl(m.h); link.firstChild.textContent = `Personaliseer de ${p.t} `;
+    $('#preview').setAttribute('aria-label', `Voorbeeld: ${p.t} met ${m.v || 'jouw tekst'}`);
+    renderPreview();
+  }
+  function atelier() {
+    $('#modes').innerHTML = Object.entries(MODES).map(([k, m]) => `<button type="button" data-m="${k}" aria-pressed="${k === mode}">${m.label}</button>`).join('');
+    $('#modes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; mode = b.dataset.m; renderAtelier(); });
+    $('#engrave').addEventListener('input', e => {
+      const m = MODES[mode]; const v = cleanVal(mode, e.target.value);
+      if (v !== e.target.value) e.target.value = v;
+      m.v = v; $('#count').textContent = `${[...v].length}/${m.max}`;
+      $('#preview').setAttribute('aria-label', `Voorbeeld: ${byH(m.h).t} met ${v || 'jouw tekst'}`);
+      renderPreview();
+      if (mode === 'naam') syncName(v, 'atelier');
+    });
+    renderAtelier();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { renderPreview(); medal(); });
+  }
+
+  /* ---------------- naam overal gelijk houden ---------------- */
+  function syncName(v, from) {
+    MODES.naam.v = v;
+    if (from !== 'cta') { const c = $('#cta-name'); if (c.value !== v) c.value = v; }
+    $('#cta-preview').textContent = v || 'Jouw naam';
+    if (from !== 'atelier' && mode === 'naam') renderAtelier();
+    medal();
+  }
+  function medal() {
+    const v = MODES.naam.v.trim() || 'Sophie';
+    $('#medal-name').textContent = v; $('#medal-label').textContent = v;
+    const n = [...v].length;
+    $('#medal-name').style.setProperty('--mf', Math.max(26, Math.min(64, 230 / (n * .46))) + 'px');
+  }
+
+  /* ---------------- scroll-morph ---------------- */
+  function morph() {
+    const sec = $('#voor-jou'), stage = $('#morph-stage'), after = $('#morph-after');
+    if (RM) { sec.classList.add('static'); return; }
+    let tick = false;
+    const upd = () => {
+      tick = false;
+      const r = sec.getBoundingClientRect(), vh = window.innerHeight, vw = document.documentElement.clientWidth;
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - vh)));
+      const base = Math.min(132, vw * .3), med = Math.min(300, vw * .74);
+      const gr = ss(.02, .4, p), k = ss(.6, .9, p);
+      let w, h, rad;
+      if (p < .6) { w = base + (vw - base) * gr; h = base + (vh - base) * gr; rad = 30 * (1 - gr); }
+      else { w = vw + (med - vw) * k; h = vh + (med - vh) * k; rad = (med / 2) * k; }
+      const s = stage.style;
+      s.setProperty('--w', w.toFixed(1) + 'px'); s.setProperty('--h', h.toFixed(1) + 'px'); s.setProperty('--rad', rad.toFixed(1) + 'px');
+      s.setProperty('--n', (1 - ss(.03, .16, p)).toFixed(3));
+      s.setProperty('--f', (ss(.26, .4, p) * (1 - ss(.56, .66, p))).toFixed(3));
+      s.setProperty('--m', ss(.8, .94, p).toFixed(3));
+      s.setProperty('--c', (1 - ss(0, .08, p)).toFixed(3));
+      const a = ss(.9, .99, p); s.setProperty('--a', a.toFixed(3));
+      after.style.visibility = a > .02 ? 'visible' : 'hidden';
+    };
+    window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, {passive: true});
+    window.addEventListener('resize', upd);
+    upd();
+  }
+
+  /* ---------------- collectie + snelle weergave ---------------- */
+  const cardHTML = p => `<button class="card rv" type="button" data-h="${p.h}" data-ty="${p.ty}" aria-label="${esc(p.t)}, ${eur(p.p)}. Bekijk details">
+      <span class="ph"><img class="a" src="${img(p, 1)}" alt="${esc(p.t)} gedragen" loading="lazy" decoding="async" width="720" height="900"><img class="b" src="${img(p, 2)}" alt="" loading="lazy" decoding="async"><span class="badge${p.fixed ? ' fixed' : ''}">${p.fixed ? 'vast ontwerp' : 'personaliseerbaar'}</span><span class="glare"></span></span>
+      <span class="meta"><span class="mono">${p.ty.toLowerCase()}</span><span class="t">${esc(p.t)}</span><span class="price">${eur(p.p)}</span><span class="ps">${esc(p.pers)}</span></span>
+    </button>`;
+  function collection() {
+    const grid = $('#grid'), fl = $('#filters');
+    const types = ['Alles', 'Kettingen', 'Armbanden', 'Ringen', 'Oorbellen', 'Sets'];
+    fl.innerHTML = types.map((t, i) => `<button class="chip" type="button" data-f="${t}" aria-pressed="${i === 0}">${t}<span class="n">${t === 'Alles' ? P.length : P.filter(p => p.ty === t).length}</span></button>`).join('');
+    grid.innerHTML = P.map(cardHTML).join('');
+    fl.addEventListener('click', e => {
+      const b = e.target.closest('.chip'); if (!b) return;
+      $$('.chip', fl).forEach(x => x.setAttribute('aria-pressed', x === b));
+      const f = b.dataset.f; let n = 0;
+      $$('.card', grid).forEach(c => {
+        const on = f === 'Alles' || c.dataset.ty === f;
+        c.hidden = !on; c.classList.remove('in', 'pre');
+        if (on && !RM) { void c.offsetWidth; c.style.animationDelay = (n++ % 8) * 40 + 'ms'; c.classList.add('in'); }
+      });
+    });
+    grid.addEventListener('click', e => { const c = e.target.closest('.card'); if (c) openQV(c.dataset.h); });
+    if (!RM && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      grid.addEventListener('pointermove', e => {
+        const c = e.target.closest('.card'); if (!c) return;
+        const r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        c.style.setProperty('--rx', ((.5 - py) * 7).toFixed(2) + 'deg'); c.style.setProperty('--ry', ((px - .5) * 9).toFixed(2) + 'deg');
+        c.style.setProperty('--gx', (px * 100).toFixed(1) + '%'); c.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+      });
+      grid.addEventListener('pointerout', e => { const c = e.target.closest('.card'); if (c && !c.contains(e.relatedTarget)) { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); } });
+    }
+  }
+  let qvH = null;
+  function openQV(h) {
+    const p = byH(h); if (!p) return; qvH = h;
+    const d = $('#qv'), main = $('#qv-img');
+    main.src = img(p, 1); main.alt = `${p.t} gedragen`;
+    $('#qv-thumbs').innerHTML = [1, 2].map(n => `<button type="button" aria-pressed="${n === 1}" data-n="${n}" aria-label="Foto ${n} van ${esc(p.t)}"><img src="${img(p, n)}" alt=""></button>`).join('');
+    $('#qv-type').textContent = p.ty.toLowerCase();
+    $('#qv-title').textContent = p.t;
+    $('#qv-price').textContent = eur(p.p);
+    $('#qv-desc').textContent = p.d;
+    $('#qv-tags').innerHTML = p.occ.map(o => `<span>${esc(OCC_NAME[o])}</span>`).join('');
+    const sizeLabel = p.size === NECK ? 'lengte' : p.size === RING ? 'maten' : 'detail';
+    const rows = [['materiaal', '14k verguld roestvrij staal, nikkelvrij'], [p.fixed ? 'ontwerp' : 'personalisatie', p.pers], [sizeLabel, p.size], ['levering', 'Binnen 2–4 werkdagen met PostNL, gratis in NL vanaf €40'], ['retour', p.fixed ? '14 dagen bedenktijd' : 'Gepersonaliseerd, daarom uitgesloten van retour']];
+    $('#qv-specs').innerHTML = rows.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
+    $('#qv-link').href = purl(p.h);
+    $('#qv-link').firstChild.textContent = p.fixed ? 'Bekijk in de winkel ' : 'Personaliseer in de winkel ';
+    if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+  }
+  function quickview() {
+    const d = $('#qv');
+    $('#qv-close').addEventListener('click', () => d.close());
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });
+    $('#qv-thumbs').addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b || !qvH) return;
+      const p = byH(qvH); $('#qv-img').src = img(p, b.dataset.n);
+      $$('#qv-thumbs button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    });
+    $('#qv-add').addEventListener('click', () => { if (!qvH) return; addToSet(qvH); d.close(); });
+  }
+
+  /* ---------------- details ---------------- */
+  function engraveLoop() {
+    const EX = [
+      {t:'52.3676° N, 4.9041° E', f:'', m:'coördinaten-armband · max. 40 tekens'},
+      {t:'Sophie', f:'script', m:'naamketting · max. 12 tekens'},
+      {t:'24.10.2019', f:'serif', m:'geboortedatum-ring · één datum'},
+      {t:'THUIS', f:'caps', m:'tekstketting · max. 12 tekens'}
+    ];
+    const out = $('#eng-text'), meta = $('#eng-meta');
+    if (RM || !('IntersectionObserver' in window)) return;
+    let vis = false, i = 0, timer = null;
+    const run = () => {
+      if (!vis) { timer = null; return; }
+      const ex = EX[i % EX.length]; out.className = 'et ' + ex.f; meta.textContent = ex.m;
+      const chars = [...ex.t]; let n = 0;
+      const type = () => {
+        if (!vis) { timer = null; return; }
+        out.textContent = chars.slice(0, n).join('');
+        if (n++ < chars.length) timer = setTimeout(type, 75);
+        else timer = setTimeout(() => { i++; run(); }, 2200);
+      };
+      type();
+    };
+    new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis && !timer) run(); }), {threshold: .4}).observe(out.closest('.viz'));
+  }
+  function ringSizer() {
+    const box = $('#rs-btns');
+    box.innerHTML = [16, 17, 18, 19].map(s => `<button type="button" data-s="${s}" aria-pressed="${s === 17}">${s}</button>`).join('');
+    box.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return; const s = +b.dataset.s;
+      $$('button', box).forEach(x => x.setAttribute('aria-pressed', x === b));
+      $('#rs-c').setAttribute('r', s * 3); $('#rs-t').textContent = s;
+      $('#rs-m').textContent = `binnendiameter ${s} mm · omtrek ${(Math.PI * s).toFixed(1).replace('.', ',')} mm`;
+    });
+  }
+
+  /* ---------------- gelegenheden ---------------- */
+  function occasions() {
+    const tabs = $('#occ-tabs'), panel = $('#occ-panel');
+    tabs.innerHTML = OCC.map((o, i) => `<button type="button" role="tab" id="tab-${o.k}" aria-controls="occ-panel" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-k="${o.k}"><span>${o.t}</span><span class="mono">${o.k === 'bon' ? '€10–100' : P.filter(p => p.occ.includes(o.k)).length}</span></button>`).join('');
+    const show = k => {
+      const o = OCC.find(x => x.k === k);
+      $$('[role="tab"]', tabs).forEach(b => { const on = b.dataset.k === k; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+      panel.setAttribute('aria-labelledby', 'tab-' + k);
+      if (k === 'bon') {
+        panel.innerHTML = `<div class="bon"><img src="img/cadeaubon-1.webp" alt="Cadeaubon van NOMI Jewelry" loading="lazy" width="720" height="392"><div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start"><span class="mono">cadeaubonnen / digitaal</span><h3>Laat haar zelf kiezen</h3><p style="color:var(--muted)">Met een cadeaubon kiest de ontvanger zelf een persoonlijk sieraad. Je krijgt de bon direct per e-mail, hij is onbeperkt geldig en er zijn geen verzendkosten.</p><div class="amounts"><span>€10</span><span>€15</span><span>€25</span><span>€50</span><span>€100</span></div><a class="btn btn-gold" href="${purl('cadeaubon')}" target="_blank" rel="noopener">Kies een cadeaubon</a></div></div>`;
+        return;
+      }
+      const list = P.filter(p => p.occ.includes(k));
+      panel.innerHTML = `<div class="occ-top"><span class="mono">collectie / ${o.c} · ${list.length} sieraden</span><a class="btn btn-ghost btn-sm" href="${curl(o.c)}" target="_blank" rel="noopener">Bekijk in de winkel</a></div>
+        <div class="occ-row">${list.map(p => `<button class="mini" type="button" data-h="${p.h}"><img src="${img(p, 1)}" alt="${esc(p.t)} gedragen" loading="lazy" width="720" height="900"><span>${esc(p.t)}</span><span class="mono">${eur(p.p)}</span></button>`).join('')}</div>`;
+    };
+    tabs.addEventListener('click', e => { const b = e.target.closest('[role="tab"]'); if (b) show(b.dataset.k); });
+    tabs.addEventListener('keydown', e => {
+      const list = $$('[role="tab"]', tabs), i = list.indexOf(document.activeElement); if (i < 0) return;
+      let n = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % list.length;
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i - 1 + list.length) % list.length;
+      if (n != null) { e.preventDefault(); list[n].focus(); show(list[n].dataset.k); }
+    });
+    panel.addEventListener('click', e => { const b = e.target.closest('.mini'); if (b) openQV(b.dataset.h); });
+    show('moeder');
+  }
+
+  /* ---------------- getallen ---------------- */
+  function counters() {
+    if (RM || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io.unobserve(e.target);
+      const el2 = e.target, to = +el2.dataset.to, t0 = performance.now();
+      const step = n => { const u = Math.min(1, (n - t0) / 1300); el2.textContent = Math.round(to * (1 - Math.pow(1 - u, 3))); if (u < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }), {threshold: .6});
+    $$('.stat b[data-to]').forEach(b => io.observe(b));
+  }
+
+  /* ---------------- setkorting ---------------- */
+  let SET = load('nomi-set', null);
+  if (!SET || typeof SET !== 'object') SET = {'naamketting': 1, 'symbool-oorstekers': 1};
+  const pct = n => n >= 4 ? 20 : n === 3 ? 15 : n === 2 ? 10 : 0;
+  function renderSet() {
+    const items = Object.entries(SET).filter(([h, q]) => q > 0 && byH(h));
+    const n = items.reduce((a, [, q]) => a + q, 0);
+    const sub = items.reduce((a, [h, q]) => a + byH(h).p * q, 0);
+    const pc = pct(n), disc = Math.round(sub * pc) / 100, tot = Math.round((sub - disc) * 100) / 100;
+    $('#set-count').textContent = n === 1 ? '1 sieraad' : `${n} sieraden`;
+    $('#lines').innerHTML = items.length ? items.map(([h, q]) => { const p = byH(h); return `<div class="line"><img src="${img(p, 1)}" alt=""><span class="nm">${esc(p.t)}<span class="mono">${eur(p.p)}</span></span><span class="qty"><button type="button" data-h="${h}" data-d="-1" aria-label="Eén ${esc(p.t)} minder">−</button>${q}<button type="button" data-h="${h}" data-d="1" aria-label="Eén ${esc(p.t)} meer">+</button></span></div>`; }).join('') : '<p class="empty">Nog leeg. Tik links op een sieraad om te beginnen.</p>';
+    $('#totals').innerHTML = `<span>Subtotaal</span><b>${eur(sub)}</b><span>Setkorting${pc ? ' ' + pc + '%' : ''}</span><b class="disc">${disc ? '−' + eur(disc) : '€0,00'}</b><span>Totaal</span><b class="big">${eur(tot)}</b>`;
+    $('#shipbar').style.setProperty('--v', Math.min(100, tot / 40 * 100).toFixed(1) + '%');
+    const sh = $('#ship-hint');
+    if (!n) { sh.textContent = 'Gratis verzending in Nederland vanaf €40.'; sh.className = 'hint'; }
+    else if (tot >= 40) { sh.textContent = 'Je set krijgt gratis verzending in Nederland.'; sh.className = 'hint ok'; }
+    else { sh.textContent = `Nog ${eur(40 - tot)} tot gratis verzending.`; sh.className = 'hint'; }
+    const th = $('#tier-hint');
+    th.textContent = n >= 4 ? 'Je hebt de hoogste setkorting: 20%.' : n === 0 ? 'Bij 2 sieraden krijg je 10% setkorting.' : `Nog 1 sieraad voor ${pct(n + 1)}% setkorting.`;
+    th.className = n >= 4 ? 'hint ok' : 'hint';
+    $$('.tier').forEach(t => t.classList.toggle('on', n >= 2 && +t.dataset.min === Math.min(4, n)));
+    save('nomi-set', SET);
+  }
+  let toastTimer = null;
+  function toast(html) {
+    const t = $('#toast'); t.innerHTML = html; t.hidden = false;
+    t.style.animation = 'none'; void t.offsetWidth; t.style.animation = '';
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 3800);
+  }
+  function addToSet(h) {
+    SET[h] = (SET[h] || 0) + 1; renderSet();
+    const n = Object.values(SET).reduce((a, q) => a + q, 0);
+    toast(`<span>${esc(byH(h).t)} staat in je set · ${n} ${n === 1 ? 'sieraad' : 'sieraden'}${pct(n) ? ' · ' + pct(n) + '% korting' : ''}</span><a class="btn btn-gold btn-sm" href="#setkorting">Bekijk je set</a>`);
+  }
+  function setBuilder() {
+    const pk = $('#picker');
+    pk.innerHTML = P.map(p => `<button class="pick" type="button" data-h="${p.h}" aria-label="${esc(p.t)} toevoegen, ${eur(p.p)}"><img src="${img(p, 1)}" alt="" loading="lazy"><span class="nm">${esc(p.t)}<span class="mono">${eur(p.p)}</span></span><span class="plus" aria-hidden="true">+</span></button>`).join('');
+    pk.addEventListener('click', e => {
+      const b = e.target.closest('.pick'); if (!b) return;
+      SET[b.dataset.h] = (SET[b.dataset.h] || 0) + 1; renderSet();
+      b.classList.remove('flash'); void b.offsetWidth; b.classList.add('flash');
+    });
+    $('#lines').addEventListener('click', e => {
+      const b = e.target.closest('button[data-d]'); if (!b) return;
+      const h = b.dataset.h; SET[h] = Math.max(0, (SET[h] || 0) + +b.dataset.d); if (!SET[h]) delete SET[h]; renderSet();
+    });
+    renderSet();
+  }
+
+  /* ---------------- afsluiter ---------------- */
+  function cta() {
+    const inp = $('#cta-name');
+    inp.addEventListener('input', () => { syncName(inp.value.slice(0, 12), 'cta'); });
+    $('#cta-form').addEventListener('submit', e => { e.preventDefault(); $('#cta-link').focus(); });
+  }
+
+  /* ---------------- reveal + glans ---------------- */
+  function reveal() {
+    if (RM || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -6% 0px'});
+    $$('.rv').forEach(n => { if (n.getBoundingClientRect().top > window.innerHeight) { n.classList.add('pre'); io.observe(n); } });
+  }
+  function spotlight() {
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    $$('.glass').forEach(g => g.addEventListener('pointermove', e => { const r = g.getBoundingClientRect(); g.style.setProperty('--mx', (e.clientX - r.left) + 'px'); g.style.setProperty('--my', (e.clientY - r.top) + 'px'); }));
+  }
+
+  silk(); nav(); atelier(); medal(); morph(); collection(); quickview();
+  engraveLoop(); ringSizer(); occasions(); counters(); setBuilder(); cta();
+  reveal(); spotlight();
+})();
+</script>
